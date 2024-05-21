@@ -80,7 +80,7 @@ class ObatController extends Controller
             return response([
                 'message' => 'Data Obat Ditemukan',
                 'data' => $obat
-            ], 404);
+            ], 200);
         }
 
         return response([
@@ -126,7 +126,7 @@ class ObatController extends Controller
             return response([
                 'message' => 'Data Obat Ditemukan',
                 'data' => $obat
-            ], 404);
+            ], 200);
         }
 
         return response([

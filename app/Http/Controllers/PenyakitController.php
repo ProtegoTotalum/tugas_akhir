@@ -83,8 +83,8 @@ class PenyakitController extends Controller
         if(!is_null($penyakit)){
             return response([
                 'message' => 'Data Penyakit Ditemukan',
-                'data' => $penyakit
-            ], 404);
+                'data' => [$penyakit]
+            ], 200);
         }
 
         return response([
@@ -96,7 +96,6 @@ class PenyakitController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'nama_penyakit' => 'required',
             'deskripsi_penyakit' => 'required',
             'gejala_penyakit' => 'required',
             'penyebab_penyakit' => 'required',
@@ -110,7 +109,6 @@ class PenyakitController extends Controller
 
         $penyakit = Penyakit::find($id);
         $penyakit->update([
-            'nama_penyakit' => $request->nama_penyakit,
             'deskripsi_penyakit' => $request->deskripsi_penyakit,
             'gejala_penyakit' => $request->gejala_penyakit,
             'penyebab_penyakit' => $request->penyebab_penyakit,
@@ -119,6 +117,6 @@ class PenyakitController extends Controller
             'cara_penanganan' => $request->cara_penanganan,
         ]);
         // alihkan halaman ke halaman penyakit
-        return new TAResource(true, 'Data Penyakit Berhasil Diupdate!', $penyakit);
+        return new TAResource(true, 'Data Penyakit Berhasil Diupdate!', [$penyakit]);
     }
 }

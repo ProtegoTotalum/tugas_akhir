@@ -75,7 +75,7 @@ class GeolokasiController extends Controller
             return response([
                 'message' => 'Data Geolokasi Ditemukan',
                 'data' => $geolokasi
-            ], 404);
+            ], 200);
         }
 
         return response([

@@ -6,23 +6,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 
-class JadwalMakan extends Model
+class Diagnosa extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'id_user',
-        'status_jadwal',
-        'tipe_jadwal_makan',
-        'pengulangan_jadwal_makan',
-        'waktu_makan',
-        'senin',
-        'selasa',
-        'rabu',
-        'kamis',
-        'jumat',
-        'sabtu',
-        'minggu',
+        'id_penyakit',
+        'nomor_diagnosa_user',
+        'nomor_diagnosa',
+        'persentase_hasil',
+        'tanggal_diagnosa',
+        'jam_diagnosa',
+        'konfirmasi_dokter',
     ];
 
     public function getCreatedAtAttribute(){
@@ -39,5 +35,9 @@ class JadwalMakan extends Model
 
     public function user(){
         return $this->belongsTo(User::class, 'id_user', 'id');
+    }
+
+    public function penyakit(){
+        return $this->belongsTo(Penyakit::class, 'id_penyakit', 'id');
     }
 }

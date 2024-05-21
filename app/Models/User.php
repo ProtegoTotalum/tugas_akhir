@@ -24,9 +24,11 @@ class User extends Authenticatable
         'email',
         'password',
         'tgl_lahir_user',
+        'umur_user',
         'no_telp_user',
         'gender_user',
         'role_user',
+        'deaktivasi',
     ];
 
     /**

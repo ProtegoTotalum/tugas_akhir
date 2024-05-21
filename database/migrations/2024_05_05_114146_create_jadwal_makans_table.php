@@ -14,18 +14,20 @@ return new class extends Migration
     public function up()
     {
         Schema::create('jadwal_makans', function (Blueprint $table) {
-            $table->id('id');
+            $table->id();
             $table->unsignedBigInteger('id_user')->nullable();
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
+            $table->boolean('status_jadwal');
             $table->string('tipe_jadwal_makan');
+            $table->string('pengulangan_jadwal_makan');
             $table->time('waktu_makan');
-            $table->integer('senin');
-            $table->integer('selasa');
-            $table->integer('rabu');
-            $table->integer('kamis');
-            $table->integer('jumat');
-            $table->integer('sabtu');
-            $table->integer('minggu');
+            $table->integer('senin')->nullable();
+            $table->integer('selasa')->nullable();
+            $table->integer('rabu')->nullable();
+            $table->integer('kamis')->nullable();
+            $table->integer('jumat')->nullable();
+            $table->integer('sabtu')->nullable();
+            $table->integer('minggu')->nullable();
             $table->timestamps();
         });
     }
