@@ -13,6 +13,8 @@ class Geolokasi extends Model
         'nama_lokasi',
         'jenis_lokasi',
         'alamat_lokasi',
+        'lat',
+        'lng'
     ];
 
     public function getCreatedAtAttribute(){

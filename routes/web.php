@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\BahanMakananController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,9 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 Route::get('/reset-password-success', function () {
     return view('auth/password-reset-success');
 });
+
+Route::get('/makanan/upload', function () {
+    return view('makanan.upload');
+});
+
+Route::post('/makanan/import', [BahanMakananController::class, 'import'])->name('makanan.import');

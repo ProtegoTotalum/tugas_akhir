@@ -9,6 +9,7 @@ use Illuminate\Support\Carbon;
 use App\Models\User;
 use App\Models\Gejala;
 use App\Models\Penyakit;
+use App\Models\Geolokasi;
 use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
@@ -25,8 +26,13 @@ class DatabaseSeeder extends Seeder
             'email' => 'rani@gmail.com',
             'password' => bcrypt('123'),
             'tgl_lahir_user' => '1997-02-20',
+            'bb_user' => '49 kg',
+            'tinggi_user' => '159 cm',
             'no_telp_user' => '0123456789123',
             'gender_user' => 'Wanita',
+            'alamat_user' => 'Jl. Perumnas',
+            'kota_user' => 'KAB. SLEMAN',
+            'provinsi_user' => 'DI YOGYAKARTA',
             'email_verified_at' => Carbon::now(),
             'role_user' => 'user',
         ]);
@@ -58,8 +64,13 @@ class DatabaseSeeder extends Seeder
             'email' => 'remi@gmail.com',
             'password' => bcrypt('123'),
             'tgl_lahir_user' => '2000-06-11',
+            'bb_user' => '62 kg',
+            'tinggi_user' => '162 cm',
             'no_telp_user' => '098765321098',
             'gender_user' => 'Pria',
+            'alamat_user' => 'Jl. Seturan',
+            'kota_user' => 'Kab. Bantul',
+            'provinsi_user' => 'Yogyakarta',
             'email_verified_at' => Carbon::now(),
             'role_user' => 'admin',
         ]);
@@ -91,8 +102,13 @@ class DatabaseSeeder extends Seeder
             'email' => 'shiba@gmail.com',
             'password' => bcrypt('123'),
             'tgl_lahir_user' => '1992-11-01',
+            'bb_user' => '72 kg',
+            'tinggi_user' => '167 cm',
             'no_telp_user' => '456123789357',
             'gender_user' => 'Pria',
+            'alamat_user' => 'Jl. Affandi',
+            'kota_user' => 'KAB. SLEMAN',
+            'provinsi_user' => 'DI YOGYAKARTA',
             'email_verified_at' => Carbon::now(),
             'role_user' => 'dokter',
         ]);
@@ -107,6 +123,60 @@ class DatabaseSeeder extends Seeder
 
         $user3->umur_user = $umur;
         $user3->save();
+
+        $user4 = User::create([
+            'nama_user' => 'Shiro',
+            'email' => 'shiro@gmail.com',
+            'password' => bcrypt('123'),
+            'tgl_lahir_user' => '1987-01-20',
+            'bb_user' => '82 kg',
+            'tinggi_user' => '184 cm',
+            'no_telp_user' => '08118923534',
+            'gender_user' => 'Pria',
+            'alamat_user' => 'Jl. Seturan',
+            'kota_user' => 'KAB. SLEMAN',
+            'provinsi_user' => 'DI YOGYAKARTA',
+            'email_verified_at' => Carbon::now(),
+            'role_user' => 'dokter',
+        ]);
+        $tgl_lahir = $user4->tgl_lahir_user;
+        $formattedBirthdate = Carbon::parse($tgl_lahir);
+
+        $now = Carbon::now();
+        $years = $formattedBirthdate->diffInYears($now);
+        $months = $formattedBirthdate->copy()->addYears($years)->diffInMonths($now);
+
+        $umur = $years . ' tahun ' . $months . ' bulan';
+
+        $user4->umur_user = $umur;
+        $user4->save();
+
+        $user5 = User::create([
+            'nama_user' => 'Jett',
+            'email' => 'jett@gmail.com',
+            'password' => bcrypt('123'),
+            'tgl_lahir_user' => '1989-08-31',
+            'bb_user' => '50 kg',
+            'tinggi_user' => '169 cm',
+            'no_telp_user' => '089812874532',
+            'gender_user' => 'Wanita',
+            'alamat_user' => 'Jl. Selokan Mataram',
+            'kota_user' => 'KAB. SLEMAN',
+            'provinsi_user' => 'DI YOGYAKARTA',
+            'email_verified_at' => Carbon::now(),
+            'role_user' => 'dokter',
+        ]);
+        $tgl_lahir = $user5->tgl_lahir_user;
+        $formattedBirthdate = Carbon::parse($tgl_lahir);
+
+        $now = Carbon::now();
+        $years = $formattedBirthdate->diffInYears($now);
+        $months = $formattedBirthdate->copy()->addYears($years)->diffInMonths($now);
+
+        $umur = $years . ' tahun ' . $months . ' bulan';
+
+        $user5->umur_user = $umur;
+        $user5->save();
         // $rand1 = Str::random(7);
         // $tgl_lahir = $user3->tgl_lahir_user;
         // $format_tgl_lahir = date('ymd', strtotime($tgl_lahir));
@@ -118,6 +188,14 @@ class DatabaseSeeder extends Seeder
         // $unique_id = $rand1 . $format_tgl_lahir . $rand2 . $padId;
         // $user3->id_unique_user = $unique_id;
         // $user3->save();
+
+        Geolokasi::create([
+            'nama_lokasi' => 'Kampus 3 Universitas Atma Jaya Yogyakarta',
+            'jenis_lokasi' => 'Apotek',
+            'alamat_lokasi' => 'JL. Babarsari No.43, Janti, Caturtunggal, Kec.Depok, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55281',
+            'lat' => '-7.779433',
+            'lng' => '110.415782'
+        ]);
 
         Gejala::create([
             'nama_gejala' => 'Mual Muntah',
@@ -350,11 +428,11 @@ class DatabaseSeeder extends Seeder
             'certainty_factor' => '0.4',
         ]);
 
-        // CertaintyFactor::create([
-        //     'id_penyakit' => '1',
-        //     'id_gejala' => '12',
-        //     'certainty_factor' => '-0.4',
-        // ]);
+        CertaintyFactor::create([
+            'id_penyakit' => '1',
+            'id_gejala' => '12',
+            'certainty_factor' => '0',
+        ]);
 
         CertaintyFactor::create([
             'id_penyakit' => '1',
@@ -365,38 +443,38 @@ class DatabaseSeeder extends Seeder
         CertaintyFactor::create([
             'id_penyakit' => '1',
             'id_gejala' => '14',
-            'certainty_factor' => '0.4',
+            'certainty_factor' => '0',
         ]);
 
-        // CertaintyFactor::create([
-        //     'id_penyakit' => '1',
-        //     'id_gejala' => '15',
-        //     'certainty_factor' => '-0.4',
-        // ]);
+        CertaintyFactor::create([
+            'id_penyakit' => '1',
+            'id_gejala' => '15',
+            'certainty_factor' => '0',
+        ]);
 
         CertaintyFactor::create([
             'id_penyakit' => '1',
             'id_gejala' => '16',
-            'certainty_factor' => '0.4',
+            'certainty_factor' => '0',
         ]);
 
         CertaintyFactor::create([
             'id_penyakit' => '1',
             'id_gejala' => '17',
-            'certainty_factor' => '0.2',
+            'certainty_factor' => '0',
         ]);
 
         CertaintyFactor::create([
             'id_penyakit' => '1',
             'id_gejala' => '18',
-            'certainty_factor' => '0.2',
+            'certainty_factor' => '0',
         ]);
 
-        // CertaintyFactor::create([
-        //     'id_penyakit' => '1',
-        //     'id_gejala' => '19',
-        //     'certainty_factor' => '-0.6',
-        // ]);
+        CertaintyFactor::create([
+            'id_penyakit' => '1',
+            'id_gejala' => '19',
+            'certainty_factor' => '0',
+        ]);
 
         CertaintyFactor::create([
             'id_penyakit' => '1',
@@ -404,23 +482,23 @@ class DatabaseSeeder extends Seeder
             'certainty_factor' => '0.4',
         ]);
 
-        // CertaintyFactor::create([
-        //     'id_penyakit' => '1',
-        //     'id_gejala' => '21',
-        //     'certainty_factor' => '-0.4',
-        // ]);
+        CertaintyFactor::create([
+            'id_penyakit' => '1',
+            'id_gejala' => '21',
+            'certainty_factor' => '0',
+        ]);
 
-        // CertaintyFactor::create([
-        //     'id_penyakit' => '1',
-        //     'id_gejala' => '22',
-        //     'certainty_factor' => '-0.8',
-        // ]);
+        CertaintyFactor::create([
+            'id_penyakit' => '1',
+            'id_gejala' => '22',
+            'certainty_factor' => '0',
+        ]);
 
-        // CertaintyFactor::create([
-        //     'id_penyakit' => '1',
-        //     'id_gejala' => '23',
-        //     'certainty_factor' => '-0.8',
-        // ]);
+        CertaintyFactor::create([
+            'id_penyakit' => '1',
+            'id_gejala' => '23',
+            'certainty_factor' => '0',
+        ]);
 
         CertaintyFactor::create([
             'id_penyakit' => '2',
@@ -476,23 +554,23 @@ class DatabaseSeeder extends Seeder
             'certainty_factor' => '0.2',
         ]);
 
-        // CertaintyFactor::create([
-        //     'id_penyakit' => '2',
-        //     'id_gejala' => '10',
-        //     'certainty_factor' => '-0.2',
-        // ]);
+        CertaintyFactor::create([
+            'id_penyakit' => '2',
+            'id_gejala' => '10',
+            'certainty_factor' => '0',
+        ]);
 
-        // CertaintyFactor::create([
-        //     'id_penyakit' => '2',
-        //     'id_gejala' => '11',
-        //     'certainty_factor' => '-0.2',
-        // ]);
+        CertaintyFactor::create([
+            'id_penyakit' => '2',
+            'id_gejala' => '11',
+            'certainty_factor' => '0',
+        ]);
 
-        // CertaintyFactor::create([
-        //     'id_penyakit' => '2',
-        //     'id_gejala' => '12',
-        //     'certainty_factor' => '-0.4',
-        // ]);
+        CertaintyFactor::create([
+            'id_penyakit' => '2',
+            'id_gejala' => '12',
+            'certainty_factor' => '0',
+        ]);
 
         CertaintyFactor::create([
             'id_penyakit' => '2',
@@ -506,11 +584,11 @@ class DatabaseSeeder extends Seeder
             'certainty_factor' => '0.4',
         ]);
 
-        // CertaintyFactor::create([
-        //     'id_penyakit' => '2',
-        //     'id_gejala' => '15',
-        //     'certainty_factor' => '-0.2',
-        // ]);
+        CertaintyFactor::create([
+            'id_penyakit' => '2',
+            'id_gejala' => '15',
+            'certainty_factor' => '0',
+        ]);
 
         CertaintyFactor::create([
             'id_penyakit' => '2',
@@ -530,11 +608,11 @@ class DatabaseSeeder extends Seeder
             'certainty_factor' => '0.2',
         ]);
 
-        // CertaintyFactor::create([
-        //     'id_penyakit' => '2',
-        //     'id_gejala' => '19',
-        //     'certainty_factor' => '-0.4',
-        // ]);
+        CertaintyFactor::create([
+            'id_penyakit' => '2',
+            'id_gejala' => '19',
+            'certainty_factor' => '0',
+        ]);
 
         CertaintyFactor::create([
             'id_penyakit' => '2',
@@ -542,23 +620,23 @@ class DatabaseSeeder extends Seeder
             'certainty_factor' => '0.6',
         ]);
 
-        // CertaintyFactor::create([
-        //     'id_penyakit' => '2',
-        //     'id_gejala' => '21',
-        //     'certainty_factor' => '-0.4',
-        // ]);
+        CertaintyFactor::create([
+            'id_penyakit' => '2',
+            'id_gejala' => '21',
+            'certainty_factor' => '0',
+        ]);
 
-        // CertaintyFactor::create([
-        //     'id_penyakit' => '2',
-        //     'id_gejala' => '22',
-        //     'certainty_factor' => '-0.4',
-        // ]);
+        CertaintyFactor::create([
+            'id_penyakit' => '2',
+            'id_gejala' => '22',
+            'certainty_factor' => '0',
+        ]);
 
-        // CertaintyFactor::create([
-        //     'id_penyakit' => '2',
-        //     'id_gejala' => '23',
-        //     'certainty_factor' => '-0.4',
-        // ]);
+        CertaintyFactor::create([
+            'id_penyakit' => '2',
+            'id_gejala' => '23',
+            'certainty_factor' => '0',
+        ]);
 
         CertaintyFactor::create([
             'id_penyakit' => '3',
@@ -575,7 +653,7 @@ class DatabaseSeeder extends Seeder
         CertaintyFactor::create([
             'id_penyakit' => '3',
             'id_gejala' => '3',
-            'certainty_factor' => '0.2',
+            'certainty_factor' => '0',
         ]);
 
         CertaintyFactor::create([
@@ -590,17 +668,17 @@ class DatabaseSeeder extends Seeder
             'certainty_factor' => '0.6',
         ]);
 
-        // CertaintyFactor::create([
-        //     'id_penyakit' => '3',
-        //     'id_gejala' => '6',
-        //     'certainty_factor' => '-0.2',
-        // ]);
+        CertaintyFactor::create([
+            'id_penyakit' => '3',
+            'id_gejala' => '6',
+            'certainty_factor' => '0',
+        ]);
 
-        // CertaintyFactor::create([
-        //     'id_penyakit' => '3',
-        //     'id_gejala' => '7',
-        //     'certainty_factor' => '-0.2',
-        // ]);
+        CertaintyFactor::create([
+            'id_penyakit' => '3',
+            'id_gejala' => '7',
+            'certainty_factor' => '0',
+        ]);
 
         CertaintyFactor::create([
             'id_penyakit' => '3',
@@ -608,23 +686,23 @@ class DatabaseSeeder extends Seeder
             'certainty_factor' => '0.4',
         ]);
 
-        // CertaintyFactor::create([
-        //     'id_penyakit' => '3',
-        //     'id_gejala' => '9',
-        //     'certainty_factor' => '-0.2',
-        // ]);
+        CertaintyFactor::create([
+            'id_penyakit' => '3',
+            'id_gejala' => '9',
+            'certainty_factor' => '0',
+        ]);
 
-        // CertaintyFactor::create([
-        //     'id_penyakit' => '3',
-        //     'id_gejala' => '10',
-        //     'certainty_factor' => '-0.2',
-        // ]);
+        CertaintyFactor::create([
+            'id_penyakit' => '3',
+            'id_gejala' => '10',
+            'certainty_factor' => '0',
+        ]);
 
-        // CertaintyFactor::create([
-        //     'id_penyakit' => '3',
-        //     'id_gejala' => '11',
-        //     'certainty_factor' => '-0.4',
-        // ]);
+        CertaintyFactor::create([
+            'id_penyakit' => '3',
+            'id_gejala' => '11',
+            'certainty_factor' => '0',
+        ]);
 
         CertaintyFactor::create([
             'id_penyakit' => '3',
@@ -644,17 +722,17 @@ class DatabaseSeeder extends Seeder
             'certainty_factor' => '0.4',
         ]);
 
-        // CertaintyFactor::create([
-        //     'id_penyakit' => '3',
-        //     'id_gejala' => '15',
-        //     'certainty_factor' => '-0.2',
-        // ]);
+        CertaintyFactor::create([
+            'id_penyakit' => '3',
+            'id_gejala' => '15',
+            'certainty_factor' => '0',
+        ]);
 
-        // CertaintyFactor::create([
-        //     'id_penyakit' => '3',
-        //     'id_gejala' => '16',
-        //     'certainty_factor' => '-0.2',
-        // ]);
+        CertaintyFactor::create([
+            'id_penyakit' => '3',
+            'id_gejala' => '16',
+            'certainty_factor' => '0',
+        ]);
 
         CertaintyFactor::create([
             'id_penyakit' => '3',
@@ -713,13 +791,13 @@ class DatabaseSeeder extends Seeder
         CertaintyFactor::create([
             'id_penyakit' => '4',
             'id_gejala' => '3',
-            'certainty_factor' => '0.4',
+            'certainty_factor' => '0',
         ]);
 
         CertaintyFactor::create([
             'id_penyakit' => '4',
             'id_gejala' => '4',
-            'certainty_factor' => '0.4',
+            'certainty_factor' => '0',
         ]);
 
         CertaintyFactor::create([
@@ -731,7 +809,7 @@ class DatabaseSeeder extends Seeder
         CertaintyFactor::create([
             'id_penyakit' => '4',
             'id_gejala' => '6',
-            'certainty_factor' => '0.4',
+            'certainty_factor' => '0',
         ]);
 
         CertaintyFactor::create([
@@ -764,11 +842,11 @@ class DatabaseSeeder extends Seeder
             'certainty_factor' => '0.2',
         ]);
 
-        // CertaintyFactor::create([
-        //     'id_penyakit' => '4',
-        //     'id_gejala' => '12',
-        //     'certainty_factor' => '-0.2',
-        // ]);
+        CertaintyFactor::create([
+            'id_penyakit' => '4',
+            'id_gejala' => '12',
+            'certainty_factor' => '0',
+        ]);
 
         CertaintyFactor::create([
             'id_penyakit' => '4',
@@ -785,7 +863,7 @@ class DatabaseSeeder extends Seeder
         CertaintyFactor::create([
             'id_penyakit' => '4',
             'id_gejala' => '15',
-            'certainty_factor' => '0.2',
+            'certainty_factor' => '0.6',
         ]);
 
         CertaintyFactor::create([
@@ -797,20 +875,20 @@ class DatabaseSeeder extends Seeder
         CertaintyFactor::create([
             'id_penyakit' => '4',
             'id_gejala' => '17',
-            'certainty_factor' => '0.2',
+            'certainty_factor' => '0.4',
         ]);
 
-        // CertaintyFactor::create([
-        //     'id_penyakit' => '4',
-        //     'id_gejala' => '18',
-        //     'certainty_factor' => '-0.2',
-        // ]);
+        CertaintyFactor::create([
+            'id_penyakit' => '4',
+            'id_gejala' => '18',
+            'certainty_factor' => '0',
+        ]);
 
-        // CertaintyFactor::create([
-        //     'id_penyakit' => '4',
-        //     'id_gejala' => '19',
-        //     'certainty_factor' => '-0.2',
-        // ]);
+        CertaintyFactor::create([
+            'id_penyakit' => '4',
+            'id_gejala' => '19',
+            'certainty_factor' => '0',
+        ]);
 
         CertaintyFactor::create([
             'id_penyakit' => '4',
@@ -818,23 +896,23 @@ class DatabaseSeeder extends Seeder
             'certainty_factor' => '0.2',
         ]);
 
-        // CertaintyFactor::create([
-        //     'id_penyakit' => '4',
-        //     'id_gejala' => '21',
-        //     'certainty_factor' => '-0.2',
-        // ]);
+        CertaintyFactor::create([
+            'id_penyakit' => '4',
+            'id_gejala' => '21',
+            'certainty_factor' => '0',
+        ]);
 
-        // CertaintyFactor::create([
-        //     'id_penyakit' => '4',
-        //     'id_gejala' => '22',
-        //     'certainty_factor' => '-0.4',
-        // ]);
+        CertaintyFactor::create([
+            'id_penyakit' => '4',
+            'id_gejala' => '22',
+            'certainty_factor' => '0',
+        ]);
 
-        // CertaintyFactor::create([
-        //     'id_penyakit' => '4',
-        //     'id_gejala' => '23',
-        //     'certainty_factor' => '-0.4',
-        // ]);
+        CertaintyFactor::create([
+            'id_penyakit' => '4',
+            'id_gejala' => '23',
+            'certainty_factor' => '0',
+        ]);
 
         CertaintyFactor::create([
             'id_penyakit' => '5',
@@ -851,7 +929,7 @@ class DatabaseSeeder extends Seeder
         CertaintyFactor::create([
             'id_penyakit' => '5',
             'id_gejala' => '3',
-            'certainty_factor' => '0.2',
+            'certainty_factor' => '0',
         ]);
 
         CertaintyFactor::create([
@@ -869,7 +947,7 @@ class DatabaseSeeder extends Seeder
         CertaintyFactor::create([
             'id_penyakit' => '5',
             'id_gejala' => '6',
-            'certainty_factor' => '0.4',
+            'certainty_factor' => '0.2',
         ]);
 
         CertaintyFactor::create([
@@ -890,23 +968,23 @@ class DatabaseSeeder extends Seeder
             'certainty_factor' => '0.4',
         ]);
 
-        // CertaintyFactor::create([
-        //     'id_penyakit' => '5',
-        //     'id_gejala' => '10',
-        //     'certainty_factor' => '-0.2',
-        // ]);
+        CertaintyFactor::create([
+            'id_penyakit' => '5',
+            'id_gejala' => '10',
+            'certainty_factor' => '0',
+        ]);
 
-        // CertaintyFactor::create([
-        //     'id_penyakit' => '5',
-        //     'id_gejala' => '11',
-        //     'certainty_factor' => '-0.2',
-        // ]);
+        CertaintyFactor::create([
+            'id_penyakit' => '5',
+            'id_gejala' => '11',
+            'certainty_factor' => '0',
+        ]);
 
-        // CertaintyFactor::create([
-        //     'id_penyakit' => '5',
-        //     'id_gejala' => '12',
-        //     'certainty_factor' => '-0.2',
-        // ]);
+        CertaintyFactor::create([
+            'id_penyakit' => '5',
+            'id_gejala' => '12',
+            'certainty_factor' => '0',
+        ]);
 
         CertaintyFactor::create([
             'id_penyakit' => '5',
@@ -920,11 +998,11 @@ class DatabaseSeeder extends Seeder
             'certainty_factor' => '0.4',
         ]);
 
-        // CertaintyFactor::create([
-        //     'id_penyakit' => '5',
-        //     'id_gejala' => '15',
-        //     'certainty_factor' => '-0.2',
-        // ]);
+        CertaintyFactor::create([
+            'id_penyakit' => '5',
+            'id_gejala' => '15',
+            'certainty_factor' => '0',
+        ]);
 
         CertaintyFactor::create([
             'id_penyakit' => '5',
@@ -938,17 +1016,17 @@ class DatabaseSeeder extends Seeder
             'certainty_factor' => '0.4',
         ]);
 
-        // CertaintyFactor::create([
-        //     'id_penyakit' => '5',
-        //     'id_gejala' => '18',
-        //     'certainty_factor' => '-0.2',
-        // ]);
+        CertaintyFactor::create([
+            'id_penyakit' => '5',
+            'id_gejala' => '18',
+            'certainty_factor' => '0',
+        ]);
 
-        // CertaintyFactor::create([
-        //     'id_penyakit' => '5',
-        //     'id_gejala' => '19',
-        //     'certainty_factor' => '-0.2',
-        // ]);
+        CertaintyFactor::create([
+            'id_penyakit' => '5',
+            'id_gejala' => '19',
+            'certainty_factor' => '0',
+        ]);
 
         CertaintyFactor::create([
             'id_penyakit' => '5',

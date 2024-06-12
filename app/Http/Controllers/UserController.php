@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\TAResource;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -86,15 +87,23 @@ class UserController extends Controller
             'tgl_lahir_user' => 'required',
             'no_telp_user' => 'required|min:11|max:13',
             'gender_user' => 'required',
+            'alamat_user' => 'required',
+            'kota_user' => 'required',
+            'provinsi_user' => 'required',
         ];
 
         // Definisikan pesan kesalahan kustom
         $messages = [
             'nama_user.required' => 'Nama wajib diisi.',
             'tgl_lahir_user.required' => 'Tanggal lahir wajib diisi.',
+            'bb_user.required' => 'Berat badan wajib diisi.',
+            'tinggi_user.required' => 'Tinggi badan wajib diisi.',
             'no_telp_user.min' => 'Nomor telepon harus minimal 11 karakter.',
             'no_telp_user.max' => 'Nomor telepon harus minimal 13 karakter.',
-            'gender_user.required' => 'Jenis Kelamin wajib diisi.',
+            'gender_user.required' => 'Jenis kelamin wajib diisi.',
+            'alamat_user.required' => 'Alamat wajib diisi.',
+            'kota_user.required' => 'Kota atau Kabupaten wajib diisi.',
+            'provinsi_user.required' => 'Provinsi wajib diisi.',
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages)->stopOnFirstFailure(true);
@@ -120,8 +129,13 @@ class UserController extends Controller
             'nama_user' => $request->nama_user,
             'tgl_lahir_user' => $tgl_lahir,
             'umur_user' => $umur,
+            'bb_user' => $request->bb_user,
+            'tinggi_user' => $request->tinggi_user,
             'no_telp_user' => $request->no_telp_user,
             'gender_user' => $request->gender_user,
+            'alamat_user' => $request->alamat_user,
+            'kota_user' => $request->kota_user,
+            'provinsi_user' => $request->provinsi_user,
         ]);
         
         // alihkan halaman ke halaman user
@@ -220,5 +234,22 @@ class UserController extends Controller
             'message' => 'Data User Tidak Ditemukan',
             'data' => null
         ], 404); // return message saat data user tidak ditemukan
+    }
+
+    public function getDataDokter($provinsi_user, $kota_user){
+
+        $dokters = User::where('role_user', 'dokter')
+                ->where('provinsi_user', $provinsi_user)
+                ->where('kota_user', $kota_user)
+                ->get();
+        if(count($dokters) > 0){
+            return new TAResource(true, 'List Data Dokter',
+            $dokters); // return data semua dokter dalam bentuk json
+        }
+
+        return response([
+            'message' => 'Data Dokter Tidak Ditemukan',
+            'data' => null
+        ], 400); // return message data dokter kosong
     }
 }

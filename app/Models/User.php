@@ -25,8 +25,13 @@ class User extends Authenticatable
         'password',
         'tgl_lahir_user',
         'umur_user',
+        'bb_user',
+        'tinggi_user',
         'no_telp_user',
         'gender_user',
+        'alamat_user',
+        'kota_user',
+        'provinsi_user',
         'role_user',
         'deaktivasi',
     ];

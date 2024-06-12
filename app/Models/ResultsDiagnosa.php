@@ -6,20 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 
-class Diagnosa extends Model
+class ResultsDiagnosa extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'id_user',
+        'id_diagnosa',
         'id_penyakit',
-        'id_dokter',
-        'nomor_diagnosa_user',
-        'nomor_diagnosa',
-        'persentase_hasil',
-        'tanggal_diagnosa',
-        'jam_diagnosa',
-        'konfirmasi_dokter',
+        'hasil_cf_komb',
+        'hasil_cf_komb_persen'
     ];
 
     public function getCreatedAtAttribute(){
@@ -34,8 +29,8 @@ class Diagnosa extends Model
         }
     }
 
-    public function user(){
-        return $this->belongsTo(User::class, 'id_user', 'id');
+    public function diagnosa(){
+        return $this->belongsTo(Diagnosa::class, 'id_diagnosa', 'id');
     }
 
     public function penyakit(){

@@ -13,13 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('geolokasis', function (Blueprint $table) {
+        Schema::create('rekomendasi_obats', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_lokasi');
-            $table->string('jenis_lokasi');
-            $table->string('alamat_lokasi');
-            $table->double('lat');
-            $table->double('lng');
+            $table->unsignedBigInteger('id_obat')->nullable();
+            $table->foreign('id_obat')->references('id')->on('obats')->onDelete('cascade');
+            $table->unsignedBigInteger('id_analisa')->nullable();
+            $table->foreign('id_analisa')->references('id')->on('analisa_dokters')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('geolokasis');
+        Schema::dropIfExists('rekomendasi_obats');
     }
 };

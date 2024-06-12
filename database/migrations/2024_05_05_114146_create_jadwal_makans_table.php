@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_user')->nullable();
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
-            $table->boolean('status_jadwal');
+            $table->integer('status_jadwal');
             $table->string('tipe_jadwal_makan');
             $table->string('pengulangan_jadwal_makan');
             $table->time('waktu_makan');

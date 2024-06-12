@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreign('id_penyakit')->references('id')->on('penyakits')->onDelete('cascade');
             $table->unsignedBigInteger('id_gejala')->nullable();
             $table->foreign('id_gejala')->references('id')->on('gejalas')->onDelete('cascade');
-            $table->float('certainty_factor');
+            $table->double('certainty_factor', 8, 1);
             $table->timestamps();
         });
     }

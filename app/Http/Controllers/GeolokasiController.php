@@ -30,6 +30,8 @@ class GeolokasiController extends Controller
             'nama_lokasi' => 'required',
             'jenis_lokasi' => 'required',
             'alamat_lokasi' => 'required',
+            'lat' => 'required',
+            'lng' => 'required',
         ]);
 
         if($validator->fails()) {
@@ -39,9 +41,11 @@ class GeolokasiController extends Controller
             'nama_lokasi' => $request->nama_lokasi,
             'jenis_lokasi' => $request->jenis_lokasi,
             'alamat_lokasi' => $request->alamat_lokasi, 
+            'lat' => $request->lat,
+            'lng' => $request->lng,
         ]);
 
-        return new TAResource(true, 'Data Geolokasi Berhasil Ditambahkan!', $geolokasi);
+        return new TAResource(true, 'Data Geolokasi Berhasil Ditambahkan!', [$geolokasi]);
     }
 
     public function destroy($id)
@@ -58,7 +62,7 @@ class GeolokasiController extends Controller
         if($geolokasi->delete()){
             return response([
                 'message' =>'Delete Geolokasi Sukses',
-                'data' => $geolokasi
+                'data' => [$geolokasi]
             ], 200);
         }
         return response([
@@ -74,7 +78,7 @@ class GeolokasiController extends Controller
         if(!is_null($geolokasi)){
             return response([
                 'message' => 'Data Geolokasi Ditemukan',
-                'data' => $geolokasi
+                'data' => [$geolokasi]
             ], 200);
         }
 
@@ -90,6 +94,8 @@ class GeolokasiController extends Controller
             'nama_lokasi' => 'required',
             'jenis_lokasi' => 'required',
             'alamat_lokasi' => 'required',
+            'lat' => 'required',
+            'lng' => 'required',
             ]);
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
@@ -100,8 +106,10 @@ class GeolokasiController extends Controller
             'nama_lokasi' => $request->nama_lokasi,
             'jenis_lokasi' => $request->jenis_lokasi,
             'alamat_lokasi' => $request->alamat_lokasi, 
+            'lat' => $request->lat,
+            'lng' => $request->lng,
         ]);
         // alihkan halaman ke halaman geolokasi
-        return new TAResource(true, 'Data Geolokasi Berhasil Diupdate!', $geolokasi);
+        return new TAResource(true, 'Data Geolokasi Berhasil Diupdate!', [$geolokasi]);
     }
 }

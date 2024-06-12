@@ -12,7 +12,7 @@ class RekomendasiObat extends Model
 
     protected $fillable = [
         'id_obat',
-        'id_penyakit',
+        'id_analisa',
     ];
 
     public function getCreatedAtAttribute(){
@@ -31,7 +31,7 @@ class RekomendasiObat extends Model
         return $this->belongsTo(Obat::class, 'id_obat', 'id');
     }
 
-    public function penyakit(){
-        return $this->belongsTo(Penyakit::class, 'id_penyakit', 'id');
+    public function analisa(){
+        return $this->belongsTo(AnalisaDokter::class, 'id_analisa', 'id');
     }
 }

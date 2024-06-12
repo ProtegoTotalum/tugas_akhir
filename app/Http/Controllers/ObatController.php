@@ -46,7 +46,7 @@ class ObatController extends Controller
             'harga_obat' => $request->harga_obat,
         ]);
 
-        return new TAResource(true, 'Data Obat Berhasil Ditambahkan!', $obat);
+        return new TAResource(true, 'Data Obat Berhasil Ditambahkan!', [$obat]);
     }
 
     public function destroy($id)
@@ -63,7 +63,7 @@ class ObatController extends Controller
         if($obat->delete()){
             return response([
                 'message' =>'Delete Obat Sukses',
-                'data' => $obat
+                'data' => [$obat]
             ], 200);
         }
         return response([
@@ -79,7 +79,7 @@ class ObatController extends Controller
         if(!is_null($obat)){
             return response([
                 'message' => 'Data Obat Ditemukan',
-                'data' => $obat
+                'data' => [$obat]
             ], 200);
         }
 
@@ -111,7 +111,7 @@ class ObatController extends Controller
             'harga_obat' => $request->harga_obat,
         ]);
         // alihkan halaman ke halaman obat
-        return new TAResource(true, 'Data Obat Berhasil Diupdate!', $obat);
+        return new TAResource(true, 'Data Obat Berhasil Diupdate!', [$obat]);
     }
 
     public function searchObat($search)

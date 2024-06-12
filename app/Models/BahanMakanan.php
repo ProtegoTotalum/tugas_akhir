@@ -12,10 +12,11 @@ class BahanMakanan extends Model
 
     protected $fillable = [
         'nama_bahan_makanan',
-        'takaran',
+        'takaran(g)',
         'kalori',
         'karbohidrat',
-        'protein',
+        'protein_nabati',
+        'protein_hewani',
         'lemak',
     ];
 

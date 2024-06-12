@@ -21,8 +21,13 @@ return new class extends Migration
             $table->string('password');
             $table->date('tgl_lahir_user');
             $table->string('umur_user')->nullable();
+            $table->string('bb_user');
+            $table->string('tinggi_user');
             $table->string('no_telp_user');
             $table->string('gender_user');
+            $table->string('alamat_user');
+            $table->string('kota_user');
+            $table->string('provinsi_user');
             $table->string('role_user')->nullable();
             $table->integer('deaktivasi')->nullable();
             $table->rememberToken();

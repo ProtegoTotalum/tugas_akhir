@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('id_gejala')->nullable();
             $table->foreign('id_gejala')->references('id')->on('gejalas')->onDelete('cascade');
-            $table->string('nomor_diagnosa_pertanyaan');
+            $table->string('nomor_diagnosa_pertanyaan')->nullable();
             $table->string('jawaban_user');
             $table->timestamps();
         });

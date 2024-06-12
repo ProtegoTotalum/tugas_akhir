@@ -13,12 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('rekomendasi_obats', function (Blueprint $table) {
+        Schema::create('results_diagnosas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_obat')->nullable();
-            $table->foreign('id_obat')->references('id')->on('obats')->onDelete('cascade');
+            $table->unsignedBigInteger('id_diagnosa')->nullable();
+            $table->foreign('id_diagnosa')->references('id')->on('diagnosas')->onDelete('cascade');
             $table->unsignedBigInteger('id_penyakit')->nullable();
             $table->foreign('id_penyakit')->references('id')->on('penyakits')->onDelete('cascade');
+            $table->double('hasil_cf_komb',8,4)->nullable();
+            $table->double('hasil_cf_komb_persen',8,2)->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rekomendasi_obats');
+        Schema::dropIfExists('results_diagnosas');
     }
 };

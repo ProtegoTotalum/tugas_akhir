@@ -37,15 +37,65 @@ Route::put('updateuser/{id}', 'App\Http\Controllers\UserController@update');
 Route::post('changepas/{id}', 'App\Http\Controllers\UserController@changePas');
 Route::get('changerole/{id}', [App\Http\Controllers\UserController::class, 'changeRole']);
 Route::get('deaktivasiakun/{id}', 'App\Http\Controllers\UserController@deaktivasiAkun');
+Route::get('getdokter/{provinsi_user}/{kota_user}', 'App\Http\Controllers\UserController@getDataDokter');
+
+//WilayahController
+Route::get('getprovinsi', 'App\Http\Controllers\WilayahController@getProvinsi');
+Route::get('getkabupatenkota/{id}', 'App\Http\Controllers\WilayahController@getKabupatenKota');
 
 //PenyakitController
 Route::get('getpenyakit', 'App\Http\Controllers\PenyakitController@index');
 Route::get('getpenyakit/{id}', 'App\Http\Controllers\PenyakitController@show');
 Route::put('updatepenyakit/{id}', 'App\Http\Controllers\PenyakitController@update');
 
+//PertanyaanController
+Route::post('storepertanyaan/{id}', 'App\Http\Controllers\PertanyaanController@storePertanyaan');
+Route::get('showpertanyaan/{id_user}/{nomor_diagnosa}', 'App\Http\Controllers\PertanyaanController@showPertanyaan');
+
 //DiagnosaController
-Route::post('storePertanyaan/{id}', 'App\Http\Controllers\DiagnosaController@storePertanyaan');
-Route::get('diagnosa/{id}', 'App\Http\Controllers\DiagnosaController@diagnosa');
+Route::get('diagnosa/{id}/{id_user_dokter}', 'App\Http\Controllers\DiagnosaController@diagnosa');
+Route::get('showdiagnosauser/{id_user}/{id_diagnosa}', 'App\Http\Controllers\DiagnosaController@showDiagnosaUser');
+Route::get('showdiagnosauserall/{id}', 'App\Http\Controllers\DiagnosaController@showDiagnosaUserAll');
+Route::get('lastdiagnosa/{id}', 'App\Http\Controllers\DiagnosaController@lastDiagnosa');
+
+//ResultsDiagnosaController
+Route::get('showresults/{id_diagnosa}', 'App\Http\Controllers\ResultsDiagnosaController@showResults');
+
+//BahanMakananController
+Route::get('getbahanmakanan', 'App\Http\Controllers\BahanMakananController@index');
+Route::get('getbahanmakanandetail/{id}', 'App\Http\Controllers\BahanMakananController@show');
+Route::get('deletebahanmakanan/{id}', 'App\Http\Controllers\BahanMakananController@deleteBahanMakanan');
+Route::post('storebahanmakanan', 'App\Http\Controllers\BahanMakananController@store');
+Route::put('updatebahanmakanan/{id}', 'App\Http\Controllers\BahanMakananController@update');
+
+//JadwalMakanController
+Route::post('storejadwalmakan', 'App\Http\Controllers\JadwalMakanController@storeJadwalMakan');
+Route::get('getjadwalmakanuserall/{id_user}', 'App\Http\Controllers\JadwalMakanController@getDataJadwalMakanUser');
+Route::get('getjadwalmakan/{id}', 'App\Http\Controllers\JadwalMakanController@show');
+Route::get('updatestatusjadwal/{id_jadwal}/{new_status}', 'App\Http\Controllers\JadwalMakanController@updateStatusJadwal');
+Route::put('updatejadwalmakan/{id}', 'App\Http\Controllers\JadwalMakanController@update');
+Route::get('deletejadwalmakan/{id}', 'App\Http\Controllers\JadwalMakanController@delete');
+
+//GejalaController
+Route::get('getgejalaall', 'App\Http\Controllers\GejalaController@index');
+
+//ObatController
+Route::get('getobatall', 'App\Http\Controllers\ObatController@index');
+Route::post('storeobat', 'App\Http\Controllers\ObatController@store');
+Route::get('getobatdetail/{id}', 'App\Http\Controllers\ObatController@show');
+Route::put('updateobat/{id}', 'App\Http\Controllers\ObatController@update');
+Route::get('deleteobat/{id}', 'App\Http\Controllers\ObatController@destroy');
+
+//RekomendasiObatController
+Route::get('getrobatall', 'App\Http\Controllers\RekomendasiObatController@index');
+Route::post('storerobat', 'App\Http\Controllers\RekomendasiObatController@store');
+
+//GeolokasiController
+Route::get('getgeolokasiall', 'App\Http\Controllers\GeolokasiController@index');
+Route::post('storegeolokasi', 'App\Http\Controllers\GeolokasiController@store');
+Route::get('getgeolokasidetail/{id}', 'App\Http\Controllers\GeolokasiController@show');
+Route::put('updategeolokasi/{id}', 'App\Http\Controllers\GeolokasiController@update');
+Route::get('deletegeolokasi/{id}', 'App\Http\Controllers\GeolokasiController@destroy');
 
 
 Route::get('searchobat/{search}', [App\Http\Controllers\ObatController::class, 'searchObat']);

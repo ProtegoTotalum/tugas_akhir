@@ -25,7 +25,12 @@ class AuthController extends Controller
             'password' => 'required|min:8',
             'tgl_lahir_user' => 'required',
             'no_telp_user' => 'required|min:11|max:13',
-            'gender_user' => 'required'
+            'bb_user' => 'required',
+            'tinggi_user' => 'required',
+            'gender_user' => 'required',
+            'alamat_user' => 'required',
+            'kota_user' => 'required',
+            'provinsi_user' => 'required'
         ]); //rule validasi input saat register
 
         if($validate->fails()) {
@@ -213,6 +218,7 @@ class AuthController extends Controller
             return response()->json(['message' => 'Failed to reset password.'], 500);
         }
     }
+
 }
 // public function logout(Request $request)
     // {        

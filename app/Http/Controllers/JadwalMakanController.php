@@ -25,35 +25,32 @@ class JadwalMakanController extends Controller
         ], 400); // return message data jadwal kosong
     }
 
-    public function store(Request $request){
-        $validator = Validator::make($request->all(), [
-            'id_user' => 'required',
-            'status_jadwal' => 'required',
+    public function storeJadwalMakan(Request $request){
+        // Definisikan aturan validasi
+        $rules = [
             'tipe_jadwal_makan' => 'required',
             'pengulangan_jadwal_makan' => 'required',
             'waktu_makan' => 'required',
-        ]);
+        ];
 
-        if($validator->fails()) {
-            return response(['message' => $validator->errors()], 400);
+        // Definisikan pesan kesalahan kustom
+        $messages = [
+            'tipe_jadwal_makan.required' => 'Tipe jadwal wajib diisi',
+            'pengulangan_jadwal_makan.required' => 'Pengulangan waktu makan wajib diisi.',
+            'waktu_makan.required' => 'Waktu tidak boleh kosong',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages)->stopOnFirstFailure(true);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => $validator->errors()->first()
+            ], 422);
         }
-        // $senin = $request->senin;
-        // $selasa = $request->selasa;
-        // $rabu = $request->rabu;
-        // $kamis = $request->kamis;
-        // $jumat = $request->jumat;
-        // $sabtu = $request->sabtu;
-        // $minggu = $request->minggu;
-
-        // if($senin == 1 && $selasa == 1 && $rabu == 1 && $kamis == 1 && $jumat == 1 && $sabtu == 1 && $minggu == 1){
-        //     $pengulangan_jadwal_makan = "Setiap Hari";
-        // }else{
-
-        // }
 
         $jadwal = JadwalMakan::create([ 
             'id_user' => $request->id_user,
-            'status_jadwal_makan' => $request->status_jadwal_makan,
+            'status_jadwal' => $request->status_jadwal,
             'tipe_jadwal_makan' => $request->tipe_jadwal_makan,
             'pengulangan_jadwal_makan' => $request->pengulangan_jadwal_makan,
             'waktu_makan' => $request->waktu_makan,
@@ -66,10 +63,10 @@ class JadwalMakanController extends Controller
             'minggu' => $request->minggu,
         ]);
 
-        return new TAResource(true, 'Data Jadwal Makan Berhasil Ditambahkan!', $jadwal);
+        return new TAResource(true, 'Data Jadwal Makan Berhasil Ditambahkan!', [$jadwal]);
     }
 
-    public function destroy($id)
+    public function delete($id)
     {
         $jadwal = JadwalMakan::find($id);
 
@@ -83,7 +80,7 @@ class JadwalMakanController extends Controller
         if($jadwal->delete()){
             return response([
                 'message' =>'Delete Jadwal Sukses',
-                'data' => $jadwal
+                'data' => [$jadwal]
             ], 200);
         }
         return response([
@@ -99,7 +96,7 @@ class JadwalMakanController extends Controller
         if(!is_null($jadwal)){
             return response([
                 'message' => 'Data Jadwal Ditemukan',
-                'data' => $jadwal
+                'data' => [$jadwal]
             ], 200);
         }
 
@@ -111,21 +108,31 @@ class JadwalMakanController extends Controller
 
     public function update(Request $request, $id)
     {
-        $validator = Validator::make($request->all(), [
-            'id_user' => 'required',
-            'status_jadwal' => 'required',
+         // Definisikan aturan validasi
+         $rules = [
             'tipe_jadwal_makan' => 'required',
             'pengulangan_jadwal_makan' => 'required',
             'waktu_makan' => 'required',
-            ]);
+        ];
+
+        // Definisikan pesan kesalahan kustom
+        $messages = [
+            'tipe_jadwal_makan.required' => 'Tipe jadwal wajib diisi',
+            'pengulangan_jadwal_makan.required' => 'Pengulangan waktu makan wajib diisi.',
+            'waktu_makan.required' => 'Waktu tidak boleh kosong',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages)->stopOnFirstFailure(true);
+
         if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
+            return response()->json([
+                'message' => $validator->errors()->first()
+            ], 422);
         }
 
         $jadwal = JadwalMakan::find($id);
         $jadwal->update([
-            'id_user' => $request->id_user,
-            'status_jadwal_makan' => $request->status_jadwal_makan,
+            'status_jadwal' => $request->status_jadwal,
             'tipe_jadwal_makan' => $request->tipe_jadwal_makan,
             'pengulangan_jadwal_makan' => $request->pengulangan_jadwal_makan,
             'waktu_makan' => $request->waktu_makan,
@@ -138,6 +145,48 @@ class JadwalMakanController extends Controller
             'minggu' => $request->minggu,
         ]);
         // alihkan halaman ke halaman jadwal
-        return new TAResource(true, 'Data Jadwal Berhasil Diupdate!', $jadwal);
+        return new TAResource(true, 'Data Jadwal Berhasil Diupdate!', [$jadwal]);
+    }
+
+    public function getDataJadwalMakanUser($id_user){
+        $jadwal = JadwalMakan::where('id_user', $id_user)
+            ->orderBy('waktu_makan', 'asc')
+            ->get();
+
+        if(!is_null($jadwal)){
+            return response([
+                'message' => 'Data Jadwal Ditemukan',
+                'data' => $jadwal
+            ], 200);
+        }
+
+        return response([
+            'message' => 'Data Jadwal Tidak Ditemukan',
+            'data' => null
+        ], 404); // return message saat data jadwal tidak ditemukan
+    }
+
+    public function updateStatusJadwal($id_jadwal, $new_status){
+        $jadwal = JadwalMakan::find($id_jadwal);
+        $status = null;
+
+        if(!is_null($jadwal)){
+            $jadwal->update([
+                'status_jadwal' => $new_status,
+            ]);
+            if($new_status == 1){
+                $status = "Pengingat Dinyalakan";
+            }else{
+                $status = "Pengingat Dimatikan";
+            }
+            return response([
+                'success' => 'true', 
+                'message' => $status,
+            ], 200);
+        }
+
+        return response([
+            'message' => 'Data Jadwal Tidak Ditemukan',
+        ], 404); // return message saat data jadwal tidak ditemukan
     }
 }
