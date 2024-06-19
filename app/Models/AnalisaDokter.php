@@ -16,6 +16,8 @@ class AnalisaDokter extends Model
         'analisa_dokter',
         'tanggal_analisa',
         'jam_analisa',
+        'reminder_analisa',
+        'status_analisa',
     ];
 
     public function getCreatedAtAttribute(){

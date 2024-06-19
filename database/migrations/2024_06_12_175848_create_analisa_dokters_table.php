@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('analisa_dokter')->nullable();
             $table->date('tanggal_analisa')->nullable();
             $table->time('jam_analisa')->nullable();
+            $table->integer('reminder_analisa')->nullable();
+            $table->integer('status_analisa')->nullable();
             $table->timestamps();
         });
     }

@@ -61,6 +61,10 @@ Route::get('lastdiagnosa/{id}', 'App\Http\Controllers\DiagnosaController@lastDia
 //ResultsDiagnosaController
 Route::get('showresults/{id_diagnosa}', 'App\Http\Controllers\ResultsDiagnosaController@showResults');
 
+//ResultsDiagnosaController
+Route::get('getanalisabydokter/{id_dokter}', 'App\Http\Controllers\AnalisaDokterController@getAnalisaByDokter');
+Route::get('updatereminderanalisa/{id_analisa}', 'App\Http\Controllers\AnalisaDokterController@updateReminderAnalisa');
+
 //BahanMakananController
 Route::get('getbahanmakanan', 'App\Http\Controllers\BahanMakananController@index');
 Route::get('getbahanmakanandetail/{id}', 'App\Http\Controllers\BahanMakananController@show');
@@ -89,6 +93,14 @@ Route::get('deleteobat/{id}', 'App\Http\Controllers\ObatController@destroy');
 //RekomendasiObatController
 Route::get('getrobatall', 'App\Http\Controllers\RekomendasiObatController@index');
 Route::post('storerobat', 'App\Http\Controllers\RekomendasiObatController@store');
+
+//RekomendasiBahanMakananController
+Route::get('getrbahanmakananall', 'App\Http\Controllers\RekomendasiBahanMakananController@index');
+Route::get('deleterbahanmakanan/{id}', 'App\Http\Controllers\RekomendasiBahanMakananController@deleteRBahanMakanan');
+
+//LaranganBahanMakananController
+Route::get('getlbahanmakananall', 'App\Http\Controllers\LaranganBahanMakananController@index');
+Route::get('deletelbahanmakanan/{id}', 'App\Http\Controllers\LaranganBahanMakananController@deleteLBahanMakanan');
 
 //GeolokasiController
 Route::get('getgeolokasiall', 'App\Http\Controllers\GeolokasiController@index');

@@ -159,7 +159,15 @@ class AuthController extends Controller
                 'message' => 'Verifikasi email anda terlebih dahulu'
             ], 401); //Return error jika belum verifikasi email
         }
+        // $token = $user->createToken('Authentication Token')->accessToken;
 
+
+        // return response([
+        //     'message' => 'Authenticated',
+        //     'user' => $user,
+        //     'token_type' => 'Bearer',
+        //     'access_token' => $token
+        // ]);
 
         return response([
             'message' => 'Authenticated',

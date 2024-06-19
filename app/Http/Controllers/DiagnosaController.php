@@ -161,10 +161,13 @@ class DiagnosaController extends Controller
                 $diagnosa_update->tanggal_diagnosa = $formattedTgl;
                 $diagnosa_update->jam_diagnosa = $formattedJam;
                 $diagnosa_update->save();
+                $zero = 0;
 
                 $analisa = AnalisaDokter::create([
                     'id_diagnosa' => $id_diagnosa,
-                    'id_dokter' => $dokter_user
+                    'id_dokter' => $dokter_user,
+                    'reminder_analisa' => $zero,
+                    'status_analisa' => $zero
                 ]);
             }
         
