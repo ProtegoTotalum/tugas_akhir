@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreign('id_diagnosa')->references('id')->on('diagnosas')->onDelete('cascade');
             $table->unsignedBigInteger('id_dokter')->nullable();
             $table->foreign('id_dokter')->references('id')->on('users')->onDelete('cascade');
-            $table->string('analisa_dokter')->nullable();
+            $table->string('catatan_dokter')->nullable();
             $table->date('tanggal_analisa')->nullable();
             $table->time('jam_analisa')->nullable();
             $table->integer('reminder_analisa')->nullable();

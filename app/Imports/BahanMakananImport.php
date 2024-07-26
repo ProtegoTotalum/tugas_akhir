@@ -11,7 +11,7 @@ class BahanMakananImport implements ToModel, WithHeadingRow
 {
     public function model(array $row)
     {
-        $expectedHeaders = ['nama_bahan_makanan', 'takaran', 'kalori', 'karbohidrat', 'protein_nabati', 'protein_hewani', 'lemak'];
+        $expectedHeaders = ['nama_bahan_makanan', 'golongan_bahan_makanan', 'takaran', 'kalori', 'karbohidrat', 'protein_nabati', 'protein_hewani', 'lemak'];
         foreach ($expectedHeaders as $header) {
             if (!isset($row[$header])) {
                 Log::error("Missing key: $header", $row);
@@ -21,6 +21,7 @@ class BahanMakananImport implements ToModel, WithHeadingRow
         Log::info('Row data', $row);
         return new BahanMakanan([
             'nama_bahan_makanan' => $row['nama_bahan_makanan'], 
+            'golongan_bahan_makanan' => $row['golongan_bahan_makanan'], 
             'takaran(g)' => $row['takaran'],
             'kalori' => $row['kalori'],
             'karbohidrat' => $row['karbohidrat'],

@@ -10,6 +10,7 @@ use App\Http\Requests\BahanMakananImportRequest;
 use App\Imports\BahanMakananImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 
 class BahanMakananController extends Controller
 {
@@ -29,9 +30,40 @@ class BahanMakananController extends Controller
         ], 400); // return message data bahan kosong
     }
 
+    public function showByGolongan($golongan)
+    {
+        //get bahan
+        // $bahan = BahanMakanan::latest()->get();
+        //render view with posts
+        $bahan = DB::table('bahan_makanans')
+        ->select(
+            'bahan_makanans.id as id',
+            'bahan_makanans.nama_bahan_makanan as nama_bahan_makanan',
+            'bahan_makanans.golongan_bahan_makanan as golongan_bahan_makanan',
+            'bahan_makanans.takaran(g) as takaran(g)',
+            'bahan_makanans.kalori as kalori',
+            'bahan_makanans.karbohidrat as karbohidrat',
+            'bahan_makanans.protein_nabati as protein_nabati',
+            'bahan_makanans.protein_hewani as protein_hewani',
+            'bahan_makanans.lemak as lemak',
+        )
+        ->where('bahan_makanans.golongan_bahan_makanan',$golongan)
+        ->get();
+        if(count($bahan) > 0){
+            return new TAResource(true, 'List Data Bahan Makanan',
+            $bahan); // return data semua bahan dalam bentuk json
+        }
+
+        return response([
+            'message' => 'Empty',
+            'data' => null
+        ], 400); // return message data bahan kosong
+    }
+
     public function store(Request $request){
         $validator = Validator::make($request->all(), [
             'nama_bahan_makanan' => 'required',
+            'golongan_bahan_makanan' => 'required',
             'takaran' => 'required',
             'kalori' => 'required',
             'karbohidrat' => 'required',
@@ -45,6 +77,7 @@ class BahanMakananController extends Controller
         }
         $bahan = BahanMakanan::create([ 
             'nama_bahan_makanan' => $request->nama_bahan_makanan,
+            'golongan_bahan_makanan' => $request->golongan_bahan_makanan,
             'takaran(g)' => $request->takaran,
             'kalori' => $request->kalori,
             'karbohidrat' => $request->karbohidrat,
@@ -100,6 +133,7 @@ class BahanMakananController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'nama_bahan_makanan' => 'required',
+            'golongan_bahan_makanan' => 'required',
             'takaran' => 'required',
             'kalori' => 'required',
             'karbohidrat' => 'required',
@@ -114,6 +148,7 @@ class BahanMakananController extends Controller
         $bahan = BahanMakanan::find($id);
         $bahan->update([
             'nama_bahan_makanan' => $request->nama_bahan_makanan,
+            'golongan_bahan_makanan' => $request->golongan_bahan_makanan,
             'takaran(g)' => $request->takaran,
             'kalori' => $request->kalori,
             'karbohidrat' => $request->karbohidrat,

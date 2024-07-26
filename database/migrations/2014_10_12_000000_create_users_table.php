@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('password');
             $table->date('tgl_lahir_user');
             $table->string('umur_user')->nullable();
-            $table->string('bb_user');
-            $table->string('tinggi_user');
+            $table->string('bb_user')->nullable();
+            $table->string('tinggi_user')->nullable();
             $table->string('no_telp_user');
             $table->string('gender_user');
             $table->string('alamat_user');
@@ -30,6 +30,7 @@ return new class extends Migration
             $table->string('provinsi_user');
             $table->string('role_user')->nullable();
             $table->integer('deaktivasi')->nullable();
+            $table->string('fcm_token')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

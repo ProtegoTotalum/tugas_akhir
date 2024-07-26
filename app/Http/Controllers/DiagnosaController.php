@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\TAResource;
 use App\Models\AnalisaDokter;
 use App\Models\ResultsDiagnosa;
+use App\Models\User;
+use App\Notifications\DiagnosisNotification;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -180,12 +182,35 @@ class DiagnosaController extends Controller
         }
     }
 
+    public function sendDiagnosisNotification(Request $request)
+    {
+        $id_dokter = $request->id_dokter;
+        $id_diagnosa = $request->id_diagnosa;
+        $dokter = User::find($id_dokter);
+        if($dokter){
+            $dokter->notify(new DiagnosisNotification($id_diagnosa));
+            $analisa = AnalisaDokter::find($id_diagnosa);
+            if($analisa){
+                $analisa->reminder_analisa = 1;
+                return response([
+                    'success' => 'true', 
+                    'message' => 'Notify ke DiagnosisNotification',
+                ], 200);
+            }
+            return response()->json(['success' => false, 'message' => 'Analisa Dokter Tidak Ditemukan'], 404);
+        }
+        return response()->json(['success' => false, 'message' => 'Dokter Tidak Ditemukan'], 404);
+
+    }
+
+
     public function showDiagnosaUser($id_user, $id_diagnosa)
     {
         $diagnosa = DB::table('diagnosas')
         ->join('users as users1', 'diagnosas.id_user', '=', 'users1.id')
         ->join('penyakits', 'diagnosas.id_penyakit', '=', 'penyakits.id')
         ->join('users as dokters', 'diagnosas.id_dokter', '=', 'dokters.id')
+        ->join('analisa_dokters', 'analisa_dokters.id_diagnosa','=','diagnosas.id')
         ->select(
             'diagnosas.id as id_diagnosa',
             'diagnosas.id_user as id_user',
@@ -201,6 +226,8 @@ class DiagnosaController extends Controller
             'diagnosas.persentase_hasil as persentase_hasil',
             'diagnosas.tanggal_diagnosa as tanggal_diagnosa',
             'diagnosas.jam_diagnosa as jam_diagnosa',
+            'diagnosas.konfirmasi_dokter as konfirmasi_dokter',
+            'analisa_dokters.catatan_dokter as catatan_dokter',
             'dokters.nama_user as nama_dokter'
         )
         ->where('diagnosas.id_user',$id_user)
@@ -223,6 +250,7 @@ class DiagnosaController extends Controller
         ->join('users as users1', 'diagnosas.id_user', '=', 'users1.id')
         ->join('penyakits', 'diagnosas.id_penyakit', '=', 'penyakits.id')
         ->join('users as dokters', 'diagnosas.id_dokter', '=', 'dokters.id')
+        ->join('analisa_dokters', 'analisa_dokters.id_diagnosa','=','diagnosas.id')
         ->select(
             'diagnosas.id as id_diagnosa',
             'diagnosas.id_user as id_user',
@@ -238,6 +266,8 @@ class DiagnosaController extends Controller
             'diagnosas.persentase_hasil as persentase_hasil',
             'diagnosas.tanggal_diagnosa as tanggal_diagnosa',
             'diagnosas.jam_diagnosa as jam_diagnosa',
+            'analisa_dokters.catatan_dokter as catatan_dokter',
+            'diagnosas.konfirmasi_dokter as konfirmasi_dokter',
             'dokters.nama_user as nama_dokter'
         )
         ->where('diagnosas.id_user',$id)
@@ -259,6 +289,7 @@ class DiagnosaController extends Controller
         ->join('users as users1', 'diagnosas.id_user', '=', 'users1.id')
         ->join('penyakits', 'diagnosas.id_penyakit', '=', 'penyakits.id')
         ->join('users as dokters', 'diagnosas.id_dokter', '=', 'dokters.id')
+        ->join('analisa_dokters', 'analisa_dokters.id_diagnosa','=','diagnosas.id')
         ->select(
             'diagnosas.id as id_diagnosa',
             'diagnosas.id_user as id_user',
@@ -274,6 +305,8 @@ class DiagnosaController extends Controller
             'diagnosas.persentase_hasil as persentase_hasil',
             'diagnosas.tanggal_diagnosa as tanggal_diagnosa',
             'diagnosas.jam_diagnosa as jam_diagnosa',
+            'analisa_dokters.catatan_dokter as catatan_dokter',
+            'diagnosas.konfirmasi_dokter as konfirmasi_dokter',
             'dokters.nama_user as nama_dokter'
         )
         ->where('diagnosas.id_user',$id)

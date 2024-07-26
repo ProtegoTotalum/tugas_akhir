@@ -31,7 +31,6 @@ class ObatController extends Controller
             'nama_obat' => 'required',
             'jenis_obat' => 'required',
             'kegunaan_obat' => 'required',
-            'aturan_minum_obat' => 'required',
             'harga_obat' => 'required',
         ]);
 
@@ -42,7 +41,6 @@ class ObatController extends Controller
             'nama_obat' => $request->nama_obat,
             'jenis_obat' => $request->jenis_obat,
             'kegunaan_obat' => $request->kegunaan_obat,
-            'aturan_minum_obat' => $request->aturan_minum_obat,
             'harga_obat' => $request->harga_obat,
         ]);
 
@@ -95,7 +93,6 @@ class ObatController extends Controller
             'nama_obat' => 'required',
             'jenis_obat' => 'required',
             'kegunaan_obat' => 'required',
-            'aturan_minum_obat' => 'required',
             'harga_obat' => 'required',
             ]);
         if ($validator->fails()) {
@@ -107,7 +104,6 @@ class ObatController extends Controller
             'nama_obat' => $request->nama_obat,
             'jenis_obat' => $request->jenis_obat,
             'kegunaan_obat' => $request->kegunaan_obat,
-            'aturan_minum_obat' => $request->aturan_minum_obat,
             'harga_obat' => $request->harga_obat,
         ]);
         // alihkan halaman ke halaman obat

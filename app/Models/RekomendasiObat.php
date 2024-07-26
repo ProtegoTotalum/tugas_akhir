@@ -13,6 +13,8 @@ class RekomendasiObat extends Model
     protected $fillable = [
         'id_obat',
         'id_analisa',
+        'aturan_minum_obat',
+        'catatan_minum_obat',
     ];
 
     public function getCreatedAtAttribute(){

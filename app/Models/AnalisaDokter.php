@@ -13,7 +13,7 @@ class AnalisaDokter extends Model
     protected $fillable = [
         'id_diagnosa',
         'id_dokter',
-        'analisa_dokter',
+        'catatan_dokter',
         'tanggal_analisa',
         'jam_analisa',
         'reminder_analisa',

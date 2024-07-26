@@ -252,4 +252,88 @@ class UserController extends Controller
             'data' => null
         ], 400); // return message data dokter kosong
     }
+
+    public function addDokter(Request $request){
+        $registrationData = $request->all(); //mengambil seluruh data input dan menyimpannya dalam variable registrationData
+
+        $validate = Validator::make($registrationData, [
+            'nama_user' => 'required|max:60',
+            'email' => 'required|email:rfc,dns|unique:users',
+            'password' => 'required|min:8',
+            'tgl_lahir_user' => 'required',
+            'no_telp_user' => 'required|min:11|max:13',
+            'gender_user' => 'required',
+            'alamat_user' => 'required',
+            'kota_user' => 'required',
+            'provinsi_user' => 'required'
+        ]); //rule validasi input saat register
+
+        if($validate->fails()) {
+            $errors = $validate->errors();
+            $errorMessage = '';
+    
+            if($errors->has('email')) {
+                if ($errors->first('email') === 'The email field is required.') {
+                    $errorMessage .= 'Email Tidak Boleh Kosong';
+                } else {
+                    $errorMessage .= 'Gunakan alamat email yang valid';
+                }
+            }else{
+                if($errors->has('no_telp_user')) {
+                    if ($errors->first('no_telp_user') === 'The no_telp_user field is required.') {
+                        $errorMessage .= 'Nomor telepon tidak boleh kosong ';
+                    } else {
+                        $errorMessage .= 'Nomor telepon harus diantara 11 dan 13 karakter';
+                    }
+                }else{
+                    if($errors->has('password')) {
+                        if ($errors->first('password') === 'The password field is required.') {
+                            $errorMessage .= 'Password tidak boleh kosong ';
+                        } else {
+                            $errorMessage .= 'Password minimal 8 karakter ';
+                        }
+                    }
+                }
+                return response(['message' => $errorMessage], 400);
+            }
+        }
+
+        $tgl_lahir = $registrationData['tgl_lahir_user'];
+        $formattedBirthdate = Carbon::parse($tgl_lahir);
+
+        // Hitung umur berdasarkan tanggal lahir
+        $now = Carbon::now();
+        $years = $formattedBirthdate->diffInYears($now);
+        $months = $formattedBirthdate->copy()->addYears($years)->diffInMonths($now);
+
+        // Format umur sebagai "xx tahun xx bulan"
+        $umur = $years . ' tahun ' . $months . ' bulan';
+        $registrationData['umur_user'] = $umur;  
+        // Input role otomatis
+        $role_user = "dokter";
+        $registrationData['role_user'] = $role_user;
+
+        // $registrationData['email_verified_at'] = $now;
+
+        $registrationData['password'] = bcrypt($request->password); //enkripsi password
+
+        $user = User::create($registrationData); //membuat user baru
+        
+        return response([
+            'message' => 'Berhasil Menambahkan Dokter',
+            'user' => $user
+        ], 200); //return data dalam bentuk json
+    }
+
+    public function updateFcmToken(Request $request)
+    {
+        $user = User::find($request->id_user);
+        $user->fcm_token = $request->fcm_token;
+        $user->save();
+
+        return response([
+            'success' => 'true', 
+            'message' => 'Berhasil menambahkan token',
+        ], 200);
+    }
 }

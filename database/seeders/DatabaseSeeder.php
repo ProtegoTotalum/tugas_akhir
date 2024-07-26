@@ -208,17 +208,12 @@ class DatabaseSeeder extends Seeder
         );
         
         Gejala::create([
-            'nama_gejala' => 'Rasa Pahit di Lidah',
-            ],
-        );
-        
-        Gejala::create([
             'nama_gejala' => 'Kesulitan Menelan',
             ],
         );
         
         Gejala::create([
-            'nama_gejala' => 'Nyeri Perut',
+            'nama_gejala' => 'Nyeri Ulu Hati',
             ],
         );
         
@@ -238,7 +233,7 @@ class DatabaseSeeder extends Seeder
         );
         
         Gejala::create([
-            'nama_gejala' => 'Nyeri Punggung Bagian Atas',
+            'nama_gejala' => 'Nyeri Saat Makan',
             ],
         );
         
@@ -248,67 +243,12 @@ class DatabaseSeeder extends Seeder
         );
         
         Gejala::create([
-            'nama_gejala' => 'Batuk Kering',
-            ],
-        );
-        
-        Gejala::create([
-            'nama_gejala' => 'Diare',
-            ],
-        );
-        
-        Gejala::create([
             'nama_gejala' => 'Keringat Dingin',
-            ],
-        );
-        
-        Gejala::create([
-            'nama_gejala' => 'Nyeri Otot',
-            ],
-        );
-        
-        Gejala::create([
-            'nama_gejala' => 'Kadar Gula Tidak Terkontrol',
-            ],
-        );
-
-        Gejala::create([
-            'nama_gejala' => 'Perasaan Kenyang Dalam Waktu Yang Lama',
             ],
         );
 
         Gejala::create([
             'nama_gejala' => 'Perubahan Berat Badan',
-            ],
-        );
-
-        Gejala::create([
-            'nama_gejala' => 'Sakit Kepala',
-            ],
-        );
-
-        Gejala::create([
-            'nama_gejala' => 'Demam',
-            ],
-        );
-
-        Gejala::create([
-            'nama_gejala' => 'Memiliki Maag',
-            ],
-        );
-
-        Gejala::create([
-            'nama_gejala' => 'Anemia',
-            ],
-        );
-
-        Gejala::create([
-            'nama_gejala' => 'Tinja Berwarna Hitam Atau Merah',
-            ],
-        );
-
-        Gejala::create([
-            'nama_gejala' => 'Muntah Darah',
             ],
         );
 
@@ -323,7 +263,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Penyakit::create([
-            'nama_penyakit' => 'Gastritis',
+            'nama_penyakit' => 'Tukak Lambung',
             'deskripsi_penyakit' => 'Naiknya asam lambung ke kerongkongan',
             'gejala_penyakit' => 'Mual muntah, rasa terbakar di rongga dada, mulut terasa pahit',
             'penyebab_penyakit' => 'Asam lambung naik',
@@ -352,16 +292,6 @@ class DatabaseSeeder extends Seeder
             'cara_penanganan' => 'Tidak ada',
         ]);
 
-        Penyakit::create([
-            'nama_penyakit' => 'Tukak Lambung',
-            'deskripsi_penyakit' => 'Naiknya asam lambung ke kerongkongan',
-            'gejala_penyakit' => 'Mual muntah, rasa terbakar di rongga dada, mulut terasa pahit',
-            'penyebab_penyakit' => 'Asam lambung naik',
-            'penyebaran_penyakit' => 'Tersebar di seluruh dunia',
-            'cara_pencegahan' => 'Tidak boleh telat makan, jangan terlalu sering makan dan minum pedas',
-            'cara_penanganan' => 'Tidak ada',
-        ]);
-
         CertaintyFactor::create([
             'id_penyakit' => '1',
             'id_gejala' => '1',
@@ -428,77 +358,77 @@ class DatabaseSeeder extends Seeder
             'certainty_factor' => '0.4',
         ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '1',
-            'id_gejala' => '12',
-            'certainty_factor' => '0',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '1',
+        //     'id_gejala' => '12',
+        //     'certainty_factor' => '0',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '1',
-            'id_gejala' => '13',
-            'certainty_factor' => '0.8',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '1',
+        //     'id_gejala' => '13',
+        //     'certainty_factor' => '0.8',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '1',
-            'id_gejala' => '14',
-            'certainty_factor' => '0',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '1',
+        //     'id_gejala' => '14',
+        //     'certainty_factor' => '0',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '1',
-            'id_gejala' => '15',
-            'certainty_factor' => '0',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '1',
+        //     'id_gejala' => '15',
+        //     'certainty_factor' => '0',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '1',
-            'id_gejala' => '16',
-            'certainty_factor' => '0',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '1',
+        //     'id_gejala' => '16',
+        //     'certainty_factor' => '0',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '1',
-            'id_gejala' => '17',
-            'certainty_factor' => '0',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '1',
+        //     'id_gejala' => '17',
+        //     'certainty_factor' => '0',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '1',
-            'id_gejala' => '18',
-            'certainty_factor' => '0',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '1',
+        //     'id_gejala' => '18',
+        //     'certainty_factor' => '0',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '1',
-            'id_gejala' => '19',
-            'certainty_factor' => '0',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '1',
+        //     'id_gejala' => '19',
+        //     'certainty_factor' => '0',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '1',
-            'id_gejala' => '20',
-            'certainty_factor' => '0.4',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '1',
+        //     'id_gejala' => '20',
+        //     'certainty_factor' => '0.4',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '1',
-            'id_gejala' => '21',
-            'certainty_factor' => '0',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '1',
+        //     'id_gejala' => '21',
+        //     'certainty_factor' => '0',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '1',
-            'id_gejala' => '22',
-            'certainty_factor' => '0',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '1',
+        //     'id_gejala' => '22',
+        //     'certainty_factor' => '0',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '1',
-            'id_gejala' => '23',
-            'certainty_factor' => '0',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '1',
+        //     'id_gejala' => '23',
+        //     'certainty_factor' => '0',
+        // ]);
 
         CertaintyFactor::create([
             'id_penyakit' => '2',
@@ -566,82 +496,82 @@ class DatabaseSeeder extends Seeder
             'certainty_factor' => '0',
         ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '2',
-            'id_gejala' => '12',
-            'certainty_factor' => '0',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '2',
+        //     'id_gejala' => '12',
+        //     'certainty_factor' => '0',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '2',
-            'id_gejala' => '13',
-            'certainty_factor' => '0.4',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '2',
+        //     'id_gejala' => '13',
+        //     'certainty_factor' => '0.4',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '2',
-            'id_gejala' => '14',
-            'certainty_factor' => '0.4',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '2',
+        //     'id_gejala' => '14',
+        //     'certainty_factor' => '0.4',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '2',
-            'id_gejala' => '15',
-            'certainty_factor' => '0',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '2',
+        //     'id_gejala' => '15',
+        //     'certainty_factor' => '0',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '2',
-            'id_gejala' => '16',
-            'certainty_factor' => '0.4',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '2',
+        //     'id_gejala' => '16',
+        //     'certainty_factor' => '0.4',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '2',
-            'id_gejala' => '17',
-            'certainty_factor' => '0.2',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '2',
+        //     'id_gejala' => '17',
+        //     'certainty_factor' => '0.2',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '2',
-            'id_gejala' => '18',
-            'certainty_factor' => '0.2',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '2',
+        //     'id_gejala' => '18',
+        //     'certainty_factor' => '0.2',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '2',
-            'id_gejala' => '19',
-            'certainty_factor' => '0',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '2',
+        //     'id_gejala' => '19',
+        //     'certainty_factor' => '0',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '2',
-            'id_gejala' => '20',
-            'certainty_factor' => '0.6',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '2',
+        //     'id_gejala' => '20',
+        //     'certainty_factor' => '0.6',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '2',
-            'id_gejala' => '21',
-            'certainty_factor' => '0',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '2',
+        //     'id_gejala' => '21',
+        //     'certainty_factor' => '0',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '2',
-            'id_gejala' => '22',
-            'certainty_factor' => '0',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '2',
+        //     'id_gejala' => '22',
+        //     'certainty_factor' => '0',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '2',
-            'id_gejala' => '23',
-            'certainty_factor' => '0',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '2',
+        //     'id_gejala' => '23',
+        //     'certainty_factor' => '0',
+        // ]);
 
         CertaintyFactor::create([
             'id_penyakit' => '3',
             'id_gejala' => '1',
-            'certainty_factor' => '0.8',
+            'certainty_factor' => '0.4',
         ]);
 
         CertaintyFactor::create([
@@ -671,25 +601,25 @@ class DatabaseSeeder extends Seeder
         CertaintyFactor::create([
             'id_penyakit' => '3',
             'id_gejala' => '6',
-            'certainty_factor' => '0',
+            'certainty_factor' => '0.2',
         ]);
 
         CertaintyFactor::create([
             'id_penyakit' => '3',
             'id_gejala' => '7',
-            'certainty_factor' => '0',
-        ]);
-
-        CertaintyFactor::create([
-            'id_penyakit' => '3',
-            'id_gejala' => '8',
             'certainty_factor' => '0.4',
         ]);
 
         CertaintyFactor::create([
             'id_penyakit' => '3',
+            'id_gejala' => '8',
+            'certainty_factor' => '0.6',
+        ]);
+
+        CertaintyFactor::create([
+            'id_penyakit' => '3',
             'id_gejala' => '9',
-            'certainty_factor' => '0',
+            'certainty_factor' => '0.4',
         ]);
 
         CertaintyFactor::create([
@@ -704,77 +634,77 @@ class DatabaseSeeder extends Seeder
             'certainty_factor' => '0',
         ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '3',
-            'id_gejala' => '12',
-            'certainty_factor' => '0.8',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '3',
+        //     'id_gejala' => '12',
+        //     'certainty_factor' => '0',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '3',
-            'id_gejala' => '13',
-            'certainty_factor' => '0.4',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '3',
+        //     'id_gejala' => '13',
+        //     'certainty_factor' => '0.4',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '3',
-            'id_gejala' => '14',
-            'certainty_factor' => '0.4',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '3',
+        //     'id_gejala' => '14',
+        //     'certainty_factor' => '0.4',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '3',
-            'id_gejala' => '15',
-            'certainty_factor' => '0',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '3',
+        //     'id_gejala' => '15',
+        //     'certainty_factor' => '0',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '3',
-            'id_gejala' => '16',
-            'certainty_factor' => '0',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '3',
+        //     'id_gejala' => '16',
+        //     'certainty_factor' => '0.4',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '3',
-            'id_gejala' => '17',
-            'certainty_factor' => '0.6',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '3',
+        //     'id_gejala' => '17',
+        //     'certainty_factor' => '0.4',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '3',
-            'id_gejala' => '18',
-            'certainty_factor' => '0.4',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '3',
+        //     'id_gejala' => '18',
+        //     'certainty_factor' => '0',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '3',
-            'id_gejala' => '19',
-            'certainty_factor' => '0.4',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '3',
+        //     'id_gejala' => '19',
+        //     'certainty_factor' => '0',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '3',
-            'id_gejala' => '20',
-            'certainty_factor' => '0.4',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '3',
+        //     'id_gejala' => '20',
+        //     'certainty_factor' => '0.6',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '3',
-            'id_gejala' => '21',
-            'certainty_factor' => '0.6',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '3',
+        //     'id_gejala' => '21',
+        //     'certainty_factor' => '0.6',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '3',
-            'id_gejala' => '22',
-            'certainty_factor' => '0.8',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '3',
+        //     'id_gejala' => '22',
+        //     'certainty_factor' => '0.6',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '3',
-            'id_gejala' => '23',
-            'certainty_factor' => '0.6',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '3',
+        //     'id_gejala' => '24',
+        //     'certainty_factor' => '0.6',
+        // ]);
 
         CertaintyFactor::create([
             'id_penyakit' => '4',
@@ -785,7 +715,7 @@ class DatabaseSeeder extends Seeder
         CertaintyFactor::create([
             'id_penyakit' => '4',
             'id_gejala' => '2',
-            'certainty_factor' => '0.4',
+            'certainty_factor' => '0.6',
         ]);
 
         CertaintyFactor::create([
@@ -797,7 +727,7 @@ class DatabaseSeeder extends Seeder
         CertaintyFactor::create([
             'id_penyakit' => '4',
             'id_gejala' => '4',
-            'certainty_factor' => '0',
+            'certainty_factor' => '0.2',
         ]);
 
         CertaintyFactor::create([
@@ -809,19 +739,19 @@ class DatabaseSeeder extends Seeder
         CertaintyFactor::create([
             'id_penyakit' => '4',
             'id_gejala' => '6',
-            'certainty_factor' => '0',
+            'certainty_factor' => '0.2',
         ]);
 
         CertaintyFactor::create([
             'id_penyakit' => '4',
             'id_gejala' => '7',
-            'certainty_factor' => '0.8',
+            'certainty_factor' => '0.4',
         ]);
 
         CertaintyFactor::create([
             'id_penyakit' => '4',
             'id_gejala' => '8',
-            'certainty_factor' => '0.8',
+            'certainty_factor' => '0.6',
         ]);
 
         CertaintyFactor::create([
@@ -833,223 +763,85 @@ class DatabaseSeeder extends Seeder
         CertaintyFactor::create([
             'id_penyakit' => '4',
             'id_gejala' => '10',
-            'certainty_factor' => '0.8',
+            'certainty_factor' => '0',
         ]);
 
         CertaintyFactor::create([
             'id_penyakit' => '4',
             'id_gejala' => '11',
-            'certainty_factor' => '0.2',
-        ]);
-
-        CertaintyFactor::create([
-            'id_penyakit' => '4',
-            'id_gejala' => '12',
             'certainty_factor' => '0',
         ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '4',
-            'id_gejala' => '13',
-            'certainty_factor' => '0.2',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '4',
+        //     'id_gejala' => '12',
+        //     'certainty_factor' => '0',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '4',
-            'id_gejala' => '14',
-            'certainty_factor' => '0.4',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '4',
+        //     'id_gejala' => '13',
+        //     'certainty_factor' => '0.4',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '4',
-            'id_gejala' => '15',
-            'certainty_factor' => '0.6',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '4',
+        //     'id_gejala' => '14',
+        //     'certainty_factor' => '0.4',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '4',
-            'id_gejala' => '16',
-            'certainty_factor' => '0.8',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '4',
+        //     'id_gejala' => '15',
+        //     'certainty_factor' => '0',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '4',
-            'id_gejala' => '17',
-            'certainty_factor' => '0.4',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '4',
+        //     'id_gejala' => '16',
+        //     'certainty_factor' => '0.4',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '4',
-            'id_gejala' => '18',
-            'certainty_factor' => '0',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '4',
+        //     'id_gejala' => '17',
+        //     'certainty_factor' => '0.4',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '4',
-            'id_gejala' => '19',
-            'certainty_factor' => '0',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '4',
+        //     'id_gejala' => '18',
+        //     'certainty_factor' => '0',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '4',
-            'id_gejala' => '20',
-            'certainty_factor' => '0.2',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '4',
+        //     'id_gejala' => '19',
+        //     'certainty_factor' => '0',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '4',
-            'id_gejala' => '21',
-            'certainty_factor' => '0',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '4',
+        //     'id_gejala' => '20',
+        //     'certainty_factor' => '0.6',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '4',
-            'id_gejala' => '22',
-            'certainty_factor' => '0',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '4',
+        //     'id_gejala' => '21',
+        //     'certainty_factor' => '0.6',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '4',
-            'id_gejala' => '23',
-            'certainty_factor' => '0',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '4',
+        //     'id_gejala' => '22',
+        //     'certainty_factor' => '0.6',
+        // ]);
 
-        CertaintyFactor::create([
-            'id_penyakit' => '5',
-            'id_gejala' => '1',
-            'certainty_factor' => '0.4',
-        ]);
-
-        CertaintyFactor::create([
-            'id_penyakit' => '5',
-            'id_gejala' => '2',
-            'certainty_factor' => '0.6',
-        ]);
-
-        CertaintyFactor::create([
-            'id_penyakit' => '5',
-            'id_gejala' => '3',
-            'certainty_factor' => '0',
-        ]);
-
-        CertaintyFactor::create([
-            'id_penyakit' => '5',
-            'id_gejala' => '4',
-            'certainty_factor' => '0.2',
-        ]);
-
-        CertaintyFactor::create([
-            'id_penyakit' => '5',
-            'id_gejala' => '5',
-            'certainty_factor' => '0.6',
-        ]);
-
-        CertaintyFactor::create([
-            'id_penyakit' => '5',
-            'id_gejala' => '6',
-            'certainty_factor' => '0.2',
-        ]);
-
-        CertaintyFactor::create([
-            'id_penyakit' => '5',
-            'id_gejala' => '7',
-            'certainty_factor' => '0.4',
-        ]);
-
-        CertaintyFactor::create([
-            'id_penyakit' => '5',
-            'id_gejala' => '8',
-            'certainty_factor' => '0.6',
-        ]);
-
-        CertaintyFactor::create([
-            'id_penyakit' => '5',
-            'id_gejala' => '9',
-            'certainty_factor' => '0.4',
-        ]);
-
-        CertaintyFactor::create([
-            'id_penyakit' => '5',
-            'id_gejala' => '10',
-            'certainty_factor' => '0',
-        ]);
-
-        CertaintyFactor::create([
-            'id_penyakit' => '5',
-            'id_gejala' => '11',
-            'certainty_factor' => '0',
-        ]);
-
-        CertaintyFactor::create([
-            'id_penyakit' => '5',
-            'id_gejala' => '12',
-            'certainty_factor' => '0',
-        ]);
-
-        CertaintyFactor::create([
-            'id_penyakit' => '5',
-            'id_gejala' => '13',
-            'certainty_factor' => '0.4',
-        ]);
-
-        CertaintyFactor::create([
-            'id_penyakit' => '5',
-            'id_gejala' => '14',
-            'certainty_factor' => '0.4',
-        ]);
-
-        CertaintyFactor::create([
-            'id_penyakit' => '5',
-            'id_gejala' => '15',
-            'certainty_factor' => '0',
-        ]);
-
-        CertaintyFactor::create([
-            'id_penyakit' => '5',
-            'id_gejala' => '16',
-            'certainty_factor' => '0.4',
-        ]);
-
-        CertaintyFactor::create([
-            'id_penyakit' => '5',
-            'id_gejala' => '17',
-            'certainty_factor' => '0.4',
-        ]);
-
-        CertaintyFactor::create([
-            'id_penyakit' => '5',
-            'id_gejala' => '18',
-            'certainty_factor' => '0',
-        ]);
-
-        CertaintyFactor::create([
-            'id_penyakit' => '5',
-            'id_gejala' => '19',
-            'certainty_factor' => '0',
-        ]);
-
-        CertaintyFactor::create([
-            'id_penyakit' => '5',
-            'id_gejala' => '20',
-            'certainty_factor' => '0.6',
-        ]);
-
-        CertaintyFactor::create([
-            'id_penyakit' => '5',
-            'id_gejala' => '21',
-            'certainty_factor' => '0.6',
-        ]);
-
-        CertaintyFactor::create([
-            'id_penyakit' => '5',
-            'id_gejala' => '22',
-            'certainty_factor' => '0.6',
-        ]);
-
-        CertaintyFactor::create([
-            'id_penyakit' => '5',
-            'id_gejala' => '23',
-            'certainty_factor' => '0.6',
-        ]);
+        // CertaintyFactor::create([
+        //     'id_penyakit' => '4',
+        //     'id_gejala' => '23',
+        //     'certainty_factor' => '0.6',
+        // ]);
     }
 }

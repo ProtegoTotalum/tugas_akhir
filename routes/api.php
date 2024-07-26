@@ -35,9 +35,12 @@ Route::get('email/resend', [EmailVerificationController::class, 'resend'])->name
 Route::get('getuser/{id}', 'App\Http\Controllers\UserController@show');
 Route::put('updateuser/{id}', 'App\Http\Controllers\UserController@update');
 Route::post('changepas/{id}', 'App\Http\Controllers\UserController@changePas');
+Route::post('adddokter', 'App\Http\Controllers\UserController@addDokter');
 Route::get('changerole/{id}', [App\Http\Controllers\UserController::class, 'changeRole']);
 Route::get('deaktivasiakun/{id}', 'App\Http\Controllers\UserController@deaktivasiAkun');
 Route::get('getdokter/{provinsi_user}/{kota_user}', 'App\Http\Controllers\UserController@getDataDokter');
+Route::post('updatefcmtoken', 'App\Http\Controllers\UserController@updateFcmToken');
+Route::post('sendnotification', 'App\Http\Controllers\NotificationController@sendNotification');
 
 //WilayahController
 Route::get('getprovinsi', 'App\Http\Controllers\WilayahController@getProvinsi');
@@ -58,15 +61,19 @@ Route::get('showdiagnosauser/{id_user}/{id_diagnosa}', 'App\Http\Controllers\Dia
 Route::get('showdiagnosauserall/{id}', 'App\Http\Controllers\DiagnosaController@showDiagnosaUserAll');
 Route::get('lastdiagnosa/{id}', 'App\Http\Controllers\DiagnosaController@lastDiagnosa');
 
+
 //ResultsDiagnosaController
 Route::get('showresults/{id_diagnosa}', 'App\Http\Controllers\ResultsDiagnosaController@showResults');
 
-//ResultsDiagnosaController
+//AnalisaDokterController
 Route::get('getanalisabydokter/{id_dokter}', 'App\Http\Controllers\AnalisaDokterController@getAnalisaByDokter');
 Route::get('updatereminderanalisa/{id_analisa}', 'App\Http\Controllers\AnalisaDokterController@updateReminderAnalisa');
+Route::get('getanalisadetail/{id_analisa}', 'App\Http\Controllers\AnalisaDokterController@getAnalisaDetail');
+Route::post('verifikasi/{id_analisa}', 'App\Http\Controllers\AnalisaDokterController@verifikasi');
 
 //BahanMakananController
-Route::get('getbahanmakanan', 'App\Http\Controllers\BahanMakananController@index');
+Route::get('getbahanmakananall', 'App\Http\Controllers\BahanMakananController@index');
+Route::get('getbahanmakananbygolongan/{golongan_bahan_makanan}', 'App\Http\Controllers\BahanMakananController@showByGolongan');
 Route::get('getbahanmakanandetail/{id}', 'App\Http\Controllers\BahanMakananController@show');
 Route::get('deletebahanmakanan/{id}', 'App\Http\Controllers\BahanMakananController@deleteBahanMakanan');
 Route::post('storebahanmakanan', 'App\Http\Controllers\BahanMakananController@store');
@@ -91,15 +98,25 @@ Route::put('updateobat/{id}', 'App\Http\Controllers\ObatController@update');
 Route::get('deleteobat/{id}', 'App\Http\Controllers\ObatController@destroy');
 
 //RekomendasiObatController
-Route::get('getrobatall', 'App\Http\Controllers\RekomendasiObatController@index');
-Route::post('storerobat', 'App\Http\Controllers\RekomendasiObatController@store');
+Route::get('getrobatallbyanalisa/{id_analisa}', 'App\Http\Controllers\RekomendasiObatController@getDataRObat');
+Route::get('getrobatuser/{id_diagnosa}', 'App\Http\Controllers\RekomendasiObatController@getDataRObatByDiagnosa');
+Route::post('storerobat/{id_analisa}', 'App\Http\Controllers\RekomendasiObatController@storeRObat');
+Route::get('getrobatdetail/{id}', 'App\Http\Controllers\RekomendasiObatController@show');
+Route::put('updaterobat/{id}', 'App\Http\Controllers\RekomendasiObatController@update');
+Route::get('deleterobat/{id}', 'App\Http\Controllers\RekomendasiObatController@deleteRObat');
 
 //RekomendasiBahanMakananController
 Route::get('getrbahanmakananall', 'App\Http\Controllers\RekomendasiBahanMakananController@index');
+Route::get('getrbahanmakananbypenyakit/{id_penyakit}', 'App\Http\Controllers\RekomendasiBahanMakananController@getDataRByPenyakit');
+Route::post('storerbahanmakanan', 'App\Http\Controllers\RekomendasiBahanMakananController@store');
+Route::get('updatetiper/{id_rekomendasi_bahan_makanan}', 'App\Http\Controllers\RekomendasiBahanMakananController@updateTipeRekomendasi');
 Route::get('deleterbahanmakanan/{id}', 'App\Http\Controllers\RekomendasiBahanMakananController@deleteRBahanMakanan');
 
 //LaranganBahanMakananController
 Route::get('getlbahanmakananall', 'App\Http\Controllers\LaranganBahanMakananController@index');
+Route::get('getlbahanmakananbypenyakit/{id_penyakit}', 'App\Http\Controllers\LaranganBahanMakananController@getDataLByPenyakit');
+Route::post('storelbahanmakanan', 'App\Http\Controllers\LaranganBahanMakananController@store');
+Route::get('updatetipel/{id_larangan_bahan_makanan}', 'App\Http\Controllers\LaranganBahanMakananController@updateTipeLarangan');
 Route::get('deletelbahanmakanan/{id}', 'App\Http\Controllers\LaranganBahanMakananController@deleteLBahanMakanan');
 
 //GeolokasiController

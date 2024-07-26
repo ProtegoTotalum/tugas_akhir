@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('nama_obat');
             $table->string('jenis_obat');
             $table->string('kegunaan_obat');
-            $table->string('aturan_minum_obat');
             $table->string('harga_obat');
             $table->timestamps();
         });

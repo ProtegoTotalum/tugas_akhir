@@ -13,5 +13,15 @@
         <input type="file" name="file" required>
         <button type="submit">Upload</button>
     </form>
+    <form action="{{ route('makanan.importrekomendasi') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <input type="file" name="file" required>
+        <button type="submit">Upload Rekomendasi</button>
+    </form>
+    <form action="{{ route('makanan.importlarangan') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <input type="file" name="file" required>
+        <button type="submit">Upload Larangan</button>
+    </form>
 </body>
 </html>

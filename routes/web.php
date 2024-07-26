@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\BahanMakananController;
+use App\Http\Controllers\LaranganBahanMakananController;
+use App\Http\Controllers\RekomendasiBahanMakananController;
+use App\Models\LaranganBahanMakanan;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +38,5 @@ Route::get('/makanan/upload', function () {
 });
 
 Route::post('/makanan/import', [BahanMakananController::class, 'import'])->name('makanan.import');
+Route::post('/makanan/importrekomendasi', [RekomendasiBahanMakananController::class, 'importRekomendasi'])->name('makanan.importrekomendasi');
+Route::post('/makanan/importlarangan', [LaranganBahanMakananController::class, 'importLarangan'])->name('makanan.importlarangan');

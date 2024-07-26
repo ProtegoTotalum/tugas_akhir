@@ -19,6 +19,8 @@ return new class extends Migration
             $table->foreign('id_obat')->references('id')->on('obats')->onDelete('cascade');
             $table->unsignedBigInteger('id_analisa')->nullable();
             $table->foreign('id_analisa')->references('id')->on('analisa_dokters')->onDelete('cascade');
+            $table->string('aturan_minum_obat')->nullable();
+            $table->string('catatan_minum_obat')->nullable();
             $table->timestamps();
         });
     }
