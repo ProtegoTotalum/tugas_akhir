@@ -84,7 +84,7 @@ class DiagnosaController extends Controller
                                 ->first();
     
                             $cf_pakar = $data_cfs->certainty_factor;
-                            $hasil_cf = round($cf_user * $cf_pakar,2);
+                            $hasil_cf = round($cf_user * $cf_pakar , 2);
                             if($hasil_cf == 0){
                                 continue;
                             } else {
@@ -92,40 +92,45 @@ class DiagnosaController extends Controller
                             }
                         
                         }
+                        // $results[] = [
+                        //     'cf_values' => $cf_values,
+                        // ];
+
+                        // return response()->json([
+                        //     'results' => $results,
+                        // ], 200);
         
                         // Calculate cf_kombinasi from cf_values
                         if (!empty($cf_values)) {
-                            $hasil_cf_komb = $cf_values[0];
-                            $first_cf = $hasil_cf_komb;
-                            $second_cf = $cf_values[1];
-                            foreach (array_slice($cf_values, 1) as $cf_value) {
-                                $track_cf_value = $cf_value;
-                                $temp = round($hasil_cf_komb + $cf_value,4);
-                                $track_temp = $temp; 
-                                $kurung = round(1 - $hasil_cf_komb,4);
-                                $track_kurung = $kurung;
-                                $hasil_cf_komb = round($temp * $kurung,4);
-                                $track_komb = $hasil_cf_komb;
-                                // $temp = $hasil_cf_komb + $cf_value;
-
-                                // $kurung = 1 - $hasil_cf_komb;
-                                
-                                // $hasil_cf_komb = $temp * $kurung;
-                                
-                                $track_hasil_komb[] = [
-                                    'track_cf_value' => $track_cf_value,
-                                    'track_temp' => $track_temp,
-                                    'track_kurung' => $track_kurung,
-                                    'hasil_cf_komb' => $track_komb,
-                                ];
+                            //Jika hanya ada 1 value dalam array
+                            if(count($cf_values) == 1){
+                                $hasil_cf_komb = $cf_values[0];
+                            }else{
+                                // if (count($cf_values) == 2) {
+                                //     // Jika hanya ada 2 value dalam array
+                                //     $cf_value1 = $cf_values[0];
+                                //     $cf_value2 = $cf_values[1]; 
+                                //     $temp = round($cf_value1 + $cf_value2 , 4);
+                                //     $kurung = round(1 - $cf_value1 , 4);
+                                //     $hasil_cf_komb = round($temp * $kurung , 4);
+                                // } else {
+                                    //Jika value dalam array lebih dari 2
+                                    $hasil_cf_komb = $cf_values[0];
+                                    foreach (array_slice($cf_values, 1) as $cf_value) {
+                                        $temp = round($hasil_cf_komb + $cf_value , 4);
+                                        $kurung = round(1 - $hasil_cf_komb , 4);
+                                        $hasil_cf_komb = round($temp * $kurung , 4);
+                                    }
+                                // }
                             }
+
                             $hasil_cf_komb_persen = round($hasil_cf_komb * 100,2);
                             $results[] = [
                                 'id_penyakit' => $id_penyakit,
                                 'nama_penyakit' => $nama_penyakit,
                                 'hasil_cf_komb' => $hasil_cf_komb,
                                 'hasil_cf_komb_persen' => $hasil_cf_komb_persen,
-                                // 'cf_values' => $cf_values,
+                                'cf_values' => $cf_values,
                                 // 'first_cf' => $first_cf,
                                 // 'second_cf' => $second_cf,
                                 // 'track_hasil' => $track_hasil_komb

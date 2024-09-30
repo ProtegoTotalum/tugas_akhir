@@ -147,9 +147,6 @@ class AuthController extends Controller
             return response(['message' => $errorMessage], 400);
         }
 
-        // if($validate->fails())
-        // return response(['message' => $validate->errors()], 400);
-
         if(!Auth::attempt($loginData))
         return response(['message' => 'Email dan password tidak valid'], 401);
 
@@ -159,16 +156,7 @@ class AuthController extends Controller
                 'message' => 'Verifikasi email anda terlebih dahulu'
             ], 401); //Return error jika belum verifikasi email
         }
-        // $token = $user->createToken('Authentication Token')->accessToken;
-
-
-        // return response([
-        //     'message' => 'Authenticated',
-        //     'user' => $user,
-        //     'token_type' => 'Bearer',
-        //     'access_token' => $token
-        // ]);
-
+        
         return response([
             'message' => 'Authenticated',
             'user' => $user,
@@ -188,7 +176,7 @@ class AuthController extends Controller
         $user = User::where('email', $request->input('email'))->first();
 
         if (!$user) {
-            return response()->json(['message' => 'User not found.'], 404);
+            return response()->json(['message' => 'Email Tidak Terdaftar.'], 404);
         }
 
         $token = Password::createToken($user);

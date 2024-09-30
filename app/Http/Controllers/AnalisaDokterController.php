@@ -137,12 +137,11 @@ class AnalisaDokterController extends Controller
         $formattedJam = Carbon::now()->format('H:i:s');
         $analisa->tanggal_analisa = $formattedTgl;
         $analisa->jam_analisa = $formattedJam;
-        
-        $id_diagnosa = $analisa->id_diagnosa;
-        $diagnosa = AnalisaDokter::find($id_diagnosa);
-        $diagnosa->konfirmasi_dokter = 1;
-
         $analisa->save();
+
+        $id_diagnosa = $analisa->id_diagnosa;
+        $diagnosa = Diagnosa::find($id_diagnosa);
+        $diagnosa->konfirmasi_dokter = 1;
         $diagnosa->save();
 
         return new TAResource(true, 'Analisa Berhasil Diverifikasi!', [$analisa]);

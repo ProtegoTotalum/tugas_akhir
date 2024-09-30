@@ -48,39 +48,6 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        // $validator = Validator::make($request->all(), [
-        //     'nama_user' => 'required',
-        //     'tgl_lahir_user' => 'required',
-        //     'no_telp_user' => 'required|min:11|max:13',
-        //     'gender_user' => 'required',
-        //     ]);
-
-        //     if($validator->fails()) {
-        //         $errors = $validator->errors();
-        //         $errorMessage = '';
-        
-        //         if($errors->has('nama_user')) {
-        //             $errorMessage .= 'Nama Tidak Boleh Kosong';
-        //         }else{
-        //             if ($errors->has('tgl_lahir_user')) {
-        //                 $errorMessage .= 'Tanggal Lahir Tidak Boleh Kosong';
-        //             }else{
-        //                 if($errors->has('no_telp_user')) {
-        //                     if ($errors->first('no_telp_user') === 'The no_telp_user field is required.') {
-        //                         $errorMessage .= 'Nomor telepon tidak boleh kosong ';
-        //                     } else {
-        //                         $errorMessage .= 'Nomor telepon harus diantara 11 dan 13 karakter';
-        //                     }
-        //                 }else{
-        //                     if($errors->has('gender_user')) {
-        //                         $errorMessage .= 'Gender tidak boleh kosong ';                                
-        //                     }
-        //                 }
-        //             }
-        //             return response(['message' => $errorMessage], 400);
-        //         }
-        //     }
-
         // Definisikan aturan validasi
         $rules = [
             'nama_user' => 'required',
@@ -275,6 +242,8 @@ class UserController extends Controller
             if($errors->has('email')) {
                 if ($errors->first('email') === 'The email field is required.') {
                     $errorMessage .= 'Email Tidak Boleh Kosong';
+                } elseif ($errors->first('email') === 'The email has already been taken.') {
+                    $errorMessage .= 'Email telah digunakan. Silakan gunakan email lain.';
                 } else {
                     $errorMessage .= 'Gunakan alamat email yang valid';
                 }
@@ -313,7 +282,7 @@ class UserController extends Controller
         $role_user = "dokter";
         $registrationData['role_user'] = $role_user;
 
-        // $registrationData['email_verified_at'] = $now;
+        $registrationData['email_verified_at'] = $now;
 
         $registrationData['password'] = bcrypt($request->password); //enkripsi password
 
